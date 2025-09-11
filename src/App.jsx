@@ -1,0 +1,1116 @@
+import React, { useEffect, useState, useRef } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Briefcase,
+  Star,
+  FolderKanban,
+  User,
+  ArrowUp,
+  Calendar,
+  Target,
+  Zap,
+  ChartBar,
+  Download,
+  Eye,
+  X,
+  FileText,
+  MessageSquare,
+  Award,
+} from "lucide-react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
+// Skill logos (placeholder - you'll need to add actual images)
+import reactLogo from "./assets/React.jpg";
+import jiraLogo from "./assets/Jira.jpg";
+import servicenowLogo from "./assets/Servicenow.jpg";
+import sqlLogo from "./assets/SQL.jpg";
+import agileLogo from "./assets/Agile.jpg";
+import resumePDF from "./assets/resume.pdf"; // <-- UPDATE THIS FILENAME
+export default function PortfolioWebsite() {
+  const [showScroll, setShowScroll] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showResumeModal, setShowResumeModal] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false); // State to track download status
+  const controls = useAnimation();
+  const sectionRefs = {
+    hero: useRef(null),
+    about: useRef(null),
+    certificates: useRef(null),
+    skills: useRef(null),
+    experience: useRef(null),
+    projects: useRef(null),
+    contact: useRef(null),
+  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScroll(window.scrollY > 300);
+      // Update active section based on scroll position
+      const sections = ["hero", "about", "certificates", "skills", "experience", "projects", "contact"];
+      const scrollPosition = window.scrollY + 100;
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && scrollPosition >= section.offsetTop) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  // Enhanced entrance animation for the entire page
+  useEffect(() => {
+    controls.start({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" }
+    });
+  }, [controls]);
+  const skills = [
+    { name: "Agile & Scrum Methodologies", logo: agileLogo, level: 95 },
+    { name: "ServiceNow Platform", logo: servicenowLogo, level: 90 },
+    { name: "JIRA & Confluence", logo: jiraLogo, level: 92 },
+    { name: "SQL & Data Analytics", logo: sqlLogo, level: 85 },
+    { name: "CI/CD Pipelines", logo: reactLogo, level: 80 },
+    { name: "Stakeholder Management", logo: agileLogo, level: 94 },
+    { name: "Release Management", logo: servicenowLogo, level: 88 },
+    { name: "Backlog Prioritization", logo: jiraLogo, level: 93 },
+  ];
+  const experiences = [
+    {
+      role: "ServiceNow Scrum Master",
+      company: "ServiceNow",
+      period: "August 2023 — Present",
+      location: "Remote",
+      highlights: [
+        "Facilitated collaborative sessions with Product Owners and stakeholders to define product goals, refine platform roadmap, resulting in 100% stakeholder alignment and 15% reduction in scope-related conflicts.",
+        "Managed all Agile ceremonies, increasing meeting efficiency by 20% and sprint delivery predictability by 18%.",
+        "Acted as a shield for development team, removing blockers and managing dependencies, reducing sprint disruptions by 25%.",
+        "Coached developers, admins, and business stakeholders on Agile best practices, accelerating Agile maturity by 30% over two quarters.",
+        "Monitored delivery progress using Agile metrics, driving 20% improvement in sprint velocity and reducing carryover work by 12%.",
+        "Protected team from scope creep, ensuring sprint commitments were met with a 95% on-time delivery rate."
+      ],
+      achievements: [
+        "Improved cross-functional engagement scores by 25% in team health surveys",
+        "Increased backlog readiness by 35% through effective grooming sessions",
+        "Reduced post-release defects by 22% through improved retrospective processes"
+      ]
+    },
+    {
+      role: "Scrum Master",
+      company: "New York Life Insurance",
+      period: "July 2020 — August 2023",
+      location: "New York, NY",
+      highlights: [
+        "Supported Agile delivery teams working on insurance, financial services, and enterprise IT systems, improving workflow efficiency by 20% while ensuring compliance with regulatory requirements.",
+        "Assisted in organizing all Scrum ceremonies, helping teams achieve 95% on-time delivery against sprint commitments.",
+        "Collaborated with senior Scrum Masters and Product Owners to manage product backlog, ensuring 100% alignment of prioritized user stories with business value.",
+        "Helped remove blockers by coordinating with internal stakeholders, QA teams, and business units, reducing critical task delays by 15%.",
+        "Contributed to training sessions on Agile best practices, resulting in 25% increase in Agile adoption rate across teams.",
+        "Assisted Product Owners in backlog grooming and user story clarification, resulting in 30% fewer story rework instances."
+      ],
+      achievements: [
+        "Improved inter-team coordination scores by 20% in stakeholder feedback surveys",
+        "Increased delivery visibility to stakeholders by 40% through burn-down charts and metrics",
+        "Improved customer experience ratings by 18% and operational efficiency by 22%"
+      ]
+    },
+    {
+      role: "Project Coordinator",
+      company: "XYZ",
+      period: "May 2018 — July 2020",
+      location: "Remote",
+      highlights: [
+        "Assisted Project Manager in developing and executing detailed project plans, schedules, and work breakdown structures, ensuring 98% on-time, in-scope delivery.",
+        "Coordinated cross-functional resources, assigned tasks, and aligned efforts between teams, stakeholders, and vendors, improving team collaboration efficiency by 25%.",
+        "Maintained comprehensive project documentation, increasing documentation accuracy by 30%.",
+        "Acted as central communication point, facilitating collaboration across departments and resolving conflicts, resulting in 20% reduction in escalation cases.",
+        "Monitored project progress using dashboards and tracking tools, improving reporting turnaround time by 40%.",
+        "Identified and tracked potential risks, maintaining risk registers that reduced project delays by 18%."
+      ],
+      achievements: [
+        "Helped reduce overspending by 12% through budget tracking and cost control",
+        "Achieved 100% audit readiness through contract compliance and documentation",
+        "Boosted productivity by 22% through process improvement initiatives"
+      ]
+    },
+  ];
+  const certificates = [
+    {
+      title: "Professional Scrum Master (PSM I)",
+      issuer: "Scrum.org",
+      date: "2022",
+      description: "Certified in Scrum framework, roles, events, and artifacts with practical knowledge of implementing Scrum."
+    },
+    {
+      title: "Professional Scrum Product Owner (PSPO)",
+      issuer: "Scrum.org",
+      date: "2022",
+      description: "Certified in maximizing product value through effective Product Backlog management and stakeholder collaboration."
+    },
+    {
+      title: "Agile Certified Practitioner (PMI-ACP)",
+      issuer: "Project Management Institute",
+      date: "2021",
+      description: "Certified in Agile principles and practices including Scrum, Kanban, Lean, and Extreme Programming."
+    },
+    {
+      title: "ServiceNow Certified System Administrator",
+      issuer: "ServiceNow",
+      date: "2023",
+      description: "Certified in configuring, implementing, and maintaining ServiceNow applications and platform features."
+    }
+  ];
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      window.scrollTo({
+        top: element.offsetTop - 80,
+        behavior: "smooth"
+      });
+    }
+    setIsMenuOpen(false);
+  };
+  // Function to handle resume download from assets folder
+  const handleDownloadResume = () => {
+    setIsDownloading(true);
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = resumePDF; // Use the imported PDF
+    link.download = 'Ichha_Sharma_Resume.pdf'; // The name the file will be saved as
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    // Reset state after download
+    setTimeout(() => {
+      setIsDownloading(false);
+    }, 1000);
+  };
+  // Enhanced floating animation for decorative elements
+  const FloatingOrb = ({ delay = 0, size = "w-64 h-64", color = "cyan" }) => {
+    return (
+      <motion.div
+        className={`${size} rounded-full blur-3xl absolute opacity-20`}
+        style={{
+          background: color === "cyan" 
+            ? "linear-gradient(135deg, #06b6d4, #0891b2)" 
+            : color === "amber" 
+              ? "linear-gradient(135deg, #f59e0b, #d97706)"
+              : "linear-gradient(135deg, #8b5cf6, #7c3aed)"
+        }}
+        animate={{
+          y: [0, -20, 0],
+          x: [0, 20, 0],
+          opacity: [0.1, 0.3, 0.1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          delay: delay,
+          ease: "easeInOut"
+        }}
+      />
+    );
+  };
+  // Resume content from your PDF (formatted for display)
+  const resumeContent = {
+    personalInfo: {
+      name: "ICHHA SHARMA",
+      phone: "+1 925-922-7772",
+      email: "4ishasharma@gmail.com",
+      location: "United States"
+    },
+    professionalSummary: `Results-driven Certified Scrum Master (PSM I) and Product Owner (PSPO) with over 7 years of experience driving Agile transformation, delivering enterprise IT, insurance, and ServiceNow platform solutions. Proven track record in sprint planning, backlog prioritization, release management, and stakeholder alignment, achieving measurable gains in delivery predictability, quality, and time-to-market. Adept at fostering cross-functional collaboration, coaching teams on Agile best practices, and removing delivery impediments to maintain high-performance team environments. Skilled in project coordination, workflow optimization, and KPI-driven decision-making, with demonstrated success in improving operational efficiency by up to 30% and stakeholder engagement by 40%. Technically proficient in JIRA, Confluence, Miro, Mural, SQL, and CI/CD pipelines, with expertise across Agile, Waterfall, and hybrid delivery models.`,
+    technicalSkills: [
+      "Sprint Planning & Execution",
+      "Backlog Prioritization",
+      "Release Management",
+      "Agile Transformation",
+      "Scrum & Kanban Methodologies",
+      "Iterative Development",
+      "Release & Delivery Coordination and Management",
+      "Agile Project Management & Documentation",
+      "Agile and Waterfall methodologies",
+      "Scrum, Lean, SAFe, Kanban Frameworks",
+      "Data-Driven Reporting & Decision Making",
+      "Conflict Resolution/ Problem Solving",
+      "Gap Analysis & Business Value Optimization",
+      "Cross-Functional Team Leadership",
+      "Risk & Issue Mitigation",
+      "Requirements Gathering",
+      "Jira, Confluence, Miro, Mural",
+      "UX/UI",
+      "PRD & User Story Creation",
+      "Software Development Lifecycle (SDLC)",
+      "Stakeholder Management",
+      "Budget & Resource Management",
+      "Business & Technical Alignment",
+      "Story Mapping & Dependency Mapping",
+      "Capacity Planning",
+      "Data Analytics & Reporting",
+      "Performance Metrics & KPI Tracking",
+      "Predictive Analytics",
+      "Issue & Impediment Tracking",
+      "Root Cause Analysis",
+      "Continuous Improvement",
+      "Quality Assurance & Testing",
+      "Skill Assessment",
+      "Agile Maturity Assessment",
+      "PAQ (Project Approach Questionnaire)",
+      "SaaS Implementation",
+      "CI/CD: Continuous Integration/ Continuous Deployment & Delivery",
+      "SQL",
+      "Stakeholder & Client Engagement and Communication",
+      "Workflow Process Optimization and Automation"
+    ],
+    experience: [
+      {
+        title: "SERVICE NOW SCRUM MASTER",
+        period: "August 2023 to Present",
+        bullets: [
+          "Facilitated collaborative sessions with Product Owners and ServiceNow stakeholders to define product goals, refine the platform roadmap, and ensure alignment with ITSM, ITOM, and other ServiceNow modules, resulting in 100% stakeholder alignment and a 15% reduction in scope-related conflicts.",
+          "Managed all Agile ceremonies for ServiceNow delivery teams, including daily stand-ups, sprint planning, sprint reviews, and retrospectives, increasing meeting efficiency by 20% and sprint delivery predictability by 18%.",
+          "Acted as a shield for the ServiceNow development team, removing blockers and managing dependencies, reducing sprint disruptions by 25%.",
+          "Coached developers, admins, and business stakeholders on Agile and Scrum best practices, accelerating Agile maturity within the ServiceNow ecosystem by 30% over two quarters.",
+          "Collaborated with business and IT stakeholders to align sprint deliverables with enterprise priorities and platform governance, improving release success rate by 15%.",
+          "Defined sprint goals in collaboration with the ServiceNow development team, ensuring technical feasibility and compliance with platform standards, leading to a 10% increase in story acceptance rate.",
+          "Monitored delivery progress using Agile metrics and platform KPIs, driving a 20% improvement in sprint velocity and reducing carryover work by 12%.",
+          "Fostered collaboration across ServiceNow developers, architects, testers, and business users, increasing cross-functional engagement scores by 25% in team health surveys.",
+          "Facilitated backlog grooming sessions to refine and prioritize ServiceNow epics/features, increasing backlog readiness by 35%.",
+          "Led retrospectives to implement process improvements, improving delivery quality and reducing post-release defects by 22%.",
+          "Advocated for Agile principles across ServiceNow delivery streams, resulting in a 15% improvement in time-to-market for platform enhancements.",
+          "Protected the team from scope creep, ensuring sprint commitments were met with a 95% on-time delivery rate.",
+          "Provided timely updates and reports in ServiceNow Agile boards and dashboards, increasing executive visibility into progress and risks by 40%.",
+          "Encouraged a self-organizing team culture, boosting team autonomy scores by 20% and knowledge-sharing activities by 30%."
+        ]
+      },
+      {
+        title: "NEW YORK LIFE INSURANCE SCRUM MASTER",
+        period: "July 2020 to August 2023",
+        bullets: [
+          "Supported Agile delivery teams working on insurance, financial services, and enterprise IT systems by facilitating Scrum and Kanban practices, improving workflow efficiency by 20% while ensuring compliance with regulatory, security, and client confidentiality requirements.",
+          "Assisted in organizing and participating in all Scrum ceremonies, including daily stand-ups, sprint planning, reviews, and retrospectives, helping teams achieve 95% on-time delivery against sprint commitments.",
+          "Collaborated with senior Scrum Masters and Product Owners to manage the product backlog, ensuring 100% alignment of prioritized user stories with business value and stakeholder expectations.",
+          "Helped the team remove blockers by coordinating with internal stakeholders, QA teams, and business units, reducing critical task delays by 15%.",
+          "Participated in training sessions on Agile and Scrum best practices tailored to the insurance and financial services domain, contributing to a 25% increase in Agile adoption rate across teams.",
+          "Assisted Product Owners in backlog grooming and user story clarification, resulting in 30% fewer story rework instances during sprint execution.",
+          "Encouraged open communication and collaboration across cross-functional teams, including developers, business analysts, underwriters, and operations staff, improving inter-team coordination scores by 20% in stakeholder feedback surveys.",
+          "Contributed to retrospectives by capturing team feedback and suggesting process improvements, leading to a 15% improvement in sprint planning efficiency.",
+          "Tracked sprint progress through burn-down charts, task boards, and Agile metrics, increasing delivery visibility to stakeholders by 40%.",
+          "Provided support in protecting the team from outside interruptions, helping maintain a 90% focus rate on committed sprint work.",
+          "Promoted team ownership and accountability while ensuring 100% role clarity across Agile teams within the insurance technology landscape.",
+          "Championed Agile values in the insurance industry context by adapting to evolving business needs, supporting the delivery of solutions that improved customer experience ratings by 18% and operational efficiency by 22%."
+        ]
+      },
+      {
+        title: "XYZ PROJECT COORDINATOR",
+        period: "May 2018 to July 2020",
+        bullets: [
+          "Assisted the Project Manager in developing and executing detailed project plans, schedules, and work breakdown structures, ensuring 98% on-time, in-scope delivery.",
+          "Coordinated cross-functional resources, assigned tasks, and aligned efforts between teams, stakeholders, and vendors, improving team collaboration efficiency by 25%.",
+          "Maintained and updated comprehensive project documentation, including scope statements, milestones, deliverables, and change logs, increasing documentation accuracy by 30%.",
+          "Acted as the central communication point, facilitating collaboration across departments and resolving conflicts, resulting in a 20% reduction in escalation cases.",
+          "Scheduled, organized, and led project meetings, capturing agendas and action items, ensuring 95% closure rate of assigned follow-up tasks.",
+          "Monitored project progress using dashboards, status reports, and tracking tools, improving reporting turnaround time by 40%.",
+          "Identified and tracked potential risks and issues, maintaining risk registers and supporting mitigation strategies that reduced project delays by 18%.",
+          "Tracked KPIs and success metrics, providing leadership with actionable insights that led to a 15% improvement in milestone achievement rates.",
+          "Assisted in managing project budgets by tracking expenses, reviewing invoices, and supporting cost control initiatives, helping to reduce overspending by 12%.",
+          "Supported procurement and vendor management processes, maintaining contract compliance and achieving 100% audit readiness.",
+          "Organized and managed project-related events, workshops, and training programs, increasing stakeholder participation by 35%.",
+          "Managed project calendars, logistics, and resource availability, ensuring zero downtime in project execution.",
+          "Contributed to process improvement initiatives, identifying workflow gaps and recommending solutions that boosted productivity by 22%."
+        ]
+      }
+    ],
+    education: [
+      "Site Director Qualifications",
+      "AMI Primary Teachers Training Course 2010-11 (Milpitas, CA)",
+      "Bachelor’s degree, Bangalore, India (1996- 1998)"
+    ],
+    certifications: [
+      "Professional Scrum Master (PSM 1)",
+      "Professional Scrum Product Owner (PSPO)"
+    ]
+  };
+  return (
+    <motion.div 
+      className="scroll-smooth bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 font-sans"
+      initial={{ opacity: 0, y: 30 }}
+      animate={controls}
+    >
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-700/50">
+        <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+          <motion.h1
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
+            className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent"
+          >
+            Ichha Sharma
+          </motion.h1>
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex space-x-2">
+            {["About", "Certificates", "Skills", "Experience", "Projects", "Contact"].map((item, i) => (
+              <motion.li
+                key={i}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className={`px-4 py-2 rounded-md transition-all duration-300 ${
+                  activeSection === item.toLowerCase() 
+                    ? 'bg-gradient-to-r from-cyan-500/20 to-amber-500/20 text-amber-300 border border-amber-500/30' 
+                    : 'hover:bg-slate-800/50 hover:text-amber-300'
+                }`}
+              >
+                <a
+                  href={`#${item.toLowerCase()}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.toLowerCase());
+                  }}
+                  className="font-medium text-sm md:text-base"
+                >
+                  {item}
+                </a>
+              </motion.li>
+            ))}
+          </ul>
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden p-2 rounded-lg hover:bg-slate-800/50 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </nav>
+        {/* Mobile Navigation */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-slate-950/95 backdrop-blur-md border-t border-slate-700/50"
+            >
+              <div className="flex flex-col py-4 px-4 space-y-3">
+                {["About", "Certificates", "Skills", "Experience", "Projects", "Contact"].map((item, i) => (
+                  <motion.button
+                    key={i}
+                    whileHover={{ x: 5 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => scrollToSection(item.toLowerCase())}
+                    className="text-left py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-300 text-slate-300 hover:text-amber-300 font-medium text-base"
+                  >
+                    {item}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </header>
+      {/* Hero Section */}
+      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 relative overflow-hidden">
+        <FloatingOrb delay={0} size="w-80 h-80" color="cyan" />
+        <FloatingOrb delay={2} size="w-64 h-64" color="amber" />
+        <FloatingOrb delay={4} size="w-72 h-72" color="purple" />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center z-10 max-w-3xl mx-auto relative"
+        >
+          {/* Avatar Profile - Increased size and added contact info */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
+            className="w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden"
+          >
+            {/* Placeholder for avatar image - replace with actual image */}
+            <div className="w-full h-full bg-slate-700 flex items-center justify-center text-white text-4xl font-bold">
+              IS
+            </div>
+            {/* If you have an actual avatar image, replace the div above with:
+            <img src="/path-to-your-avatar.jpg" alt="Ichha Sharma" className="w-full h-full object-cover" />
+            */}
+          </motion.div>
+          {/* Contact info under profile */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6 text-slate-300 text-sm">
+            <div className="flex items-center gap-1">
+              <Phone className="w-3.5 h-3.5 text-cyan-400" />
+              +1 925-922-7772
+            </div>
+            <div className="flex items-center gap-1">
+              <Mail className="w-3.5 h-3.5 text-amber-400" />
+              4ishasharma@gmail.com
+            </div>
+            <div className="flex items-center gap-1">
+              <MapPin className="w-3.5 h-3.5 text-green-400" />
+              United States (Remote)
+            </div>
+          </div>
+          <motion.h2 
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-amber-400 to-pink-400 bg-clip-text text-transparent leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+          >
+            Certified Scrum Master & Product Owner
+          </motion.h2>
+          <motion.p
+            className="text-lg md:text-xl text-slate-300 mb-6 leading-relaxed max-w-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
+          >
+            Driving Agile transformations and delivering enterprise IT solutions with 7+ years of experience in ServiceNow, Insurance, and Financial Services domains.
+          </motion.p>
+          {/* Updated button order with FUNCTION call for download */}
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            {/* CHANGED: onClick now calls handleDownloadResume */}
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handleDownloadResume}
+              disabled={isDownloading}
+              className="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 text-white font-medium px-6 py-3 rounded-full shadow-md transition-all duration-300 text-sm flex items-center justify-center gap-2"
+            >
+              <Download size={16} />
+              {isDownloading ? 'Downloading...' : 'Download Resume'}
+            </motion.button>
+            <motion.div
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => scrollToSection('contact')}
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-6 py-3 rounded-full shadow-md font-medium transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer text-sm"
+            >
+              <MessageSquare size={16} />
+              Contact Details
+            </motion.div>
+          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
+          >
+            {[
+              { value: "7+", label: "Years Experience", color: "cyan-400" },
+              { value: "30%", label: "Efficiency Gain", color: "amber-400" },
+              { value: "95%", label: "On-time Delivery", color: "green-400" },
+              { value: "40%", label: "Engagement Boost", color: "pink-400" }
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
+              >
+                <div className={`text-2xl md:text-3xl font-bold text-${stat.color}`}>{stat.value}</div>
+                <div className="text-xs text-slate-400">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
+        >
+          <ArrowUp className="w-5 h-5 text-slate-400 rotate-180" />
+        </motion.div>
+      </section>
+      {/* About Section */}
+      <section
+        id="about"
+        className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative"
+      >
+        <FloatingOrb delay={0} size="w-48 h-48" color="cyan" />
+        <FloatingOrb delay={3} size="w-40 h-40" color="amber" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-pink-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
+            <User className="w-7 h-7" /> About Me
+          </h3>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-cyan-500 to-amber-500 mx-auto rounded-full"></div>
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-4"
+          >
+            <h4 className="text-2xl font-bold text-white">Professional Summary</h4>
+            <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+              Results-driven Certified Scrum Master (PSM I) and Product Owner (PSPO) with over 7 years of experience driving Agile transformation, delivering enterprise IT, insurance, and ServiceNow platform solutions.
+            </p>
+            <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+              Proven track record in sprint planning, backlog prioritization, release management, and stakeholder alignment, achieving measurable gains in delivery predictability, quality, and time-to-market.
+            </p>
+            <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+              Adept at fostering cross-functional collaboration, coaching teams on Agile best practices, and removing delivery impediments to maintain high-performance team environments.
+            </p>
+            <div className="grid grid-cols-2 gap-3 mt-6">
+              {[
+                { value: "30%", label: "Operational Efficiency Improvement", color: "cyan-400" },
+                { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-400" }
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.03 }}
+                  className="bg-gradient-to-br from-slate-800 to-slate-700 p-3 rounded-lg border border-slate-600/50"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2, duration: 0.5 }}
+                >
+                  <div className={`text-xl font-bold text-${stat.color}`}>{stat.value}</div>
+                  <div className="text-sm text-slate-400">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 p-6 rounded-xl border border-slate-600/30 backdrop-blur-sm"
+          >
+            <h4 className="text-2xl font-bold text-white mb-4">Core Competencies</h4>
+            <div className="space-y-2">
+              {[
+                "Agile Transformation & Scrum/Kanban Methodologies",
+                "Sprint Planning & Backlog Prioritization",
+                "Release Management & Delivery Coordination",
+                "Stakeholder Management & Business Alignment",
+                "JIRA, Confluence, Miro, Mural, SQL",
+                "Cross-Functional Team Leadership & Coaching",
+                "Data-Driven Reporting & KPI Tracking",
+                "Continuous Improvement & Quality Assurance"
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -15 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1, duration: 0.4 }}
+                  whileHover={{ x: 0, scale: 1.02 }}
+                  className="flex items-center gap-2 p-2 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors"
+                >
+                  <motion.div 
+                    className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
+                  />
+                  <span className="text-slate-300 text-base">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mt-6 pt-4 border-t border-slate-600/50">
+              <div className="flex items-center gap-2 text-amber-400 mb-2">
+                <Star className="w-5 h-5" />
+                <span className="font-semibold text-lg">Certifications</span>
+              </div>
+              <div className="space-y-1">
+                <div className="text-slate-300 text-base">Professional Scrum Master (PSM I)</div>
+                <div className="text-slate-300 text-base">Professional Scrum Product Owner (PSPO)</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      {/* Certificates Section - Moved right after About Me */}
+      <section id="certificates" className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative">
+        <FloatingOrb delay={0} size="w-48 h-48" color="gold" />
+        <FloatingOrb delay={3} size="w-40 h-40" color="purple" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent flex items-center justify-center gap-2">
+            <Award className="w-7 h-7" /> Certifications
+          </h3>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-yellow-500 to-amber-500 mx-auto rounded-full"></div>
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {certificates.map((cert, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -5, scale: 1.03 }}
+              className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 p-5 rounded-xl border border-slate-600/30 hover:border-amber-500/50 transition-all duration-300 backdrop-blur-sm group"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h4 className="text-xl font-bold text-amber-300 mb-1">{cert.title}</h4>
+                  <p className="text-slate-400 text-base">{cert.issuer} • {cert.date}</p>
+                </div>
+                <div className="w-12 h-12 bg-gradient-to-br from-amber-500/20 to-yellow-500/20 rounded-lg flex items-center justify-center">
+                  <Award className="w-6 h-6 text-amber-400" />
+                </div>
+              </div>
+              <p className="text-slate-300 text-base leading-relaxed">{cert.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Skills Section */}
+      <section
+        id="skills"
+        className="max-w-6xl mx-auto px-4 py-12 md:py-16 bg-gradient-to-br from-slate-900/30 to-slate-800/30 rounded-2xl backdrop-blur-sm border border-slate-700/30 my-8 relative overflow-hidden"
+      >
+        <FloatingOrb delay={0} size="w-64 h-64" color="pink" />
+        <FloatingOrb delay={3} size="w-56 h-56" color="green" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
+            <Star className="w-7 h-7" /> Technical Skills & Expertise
+          </h3>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-pink-500 to-cyan-500 mx-auto rounded-full"></div>
+        </motion.div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skills.map((skill, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
+              whileHover={{ y: -5, scale: 1.03 }}
+              className="group bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-5 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-amber-500/20 rounded-lg flex items-center justify-center group-hover:from-cyan-500/30 group-hover:to-amber-500/30 transition-colors">
+                  <img
+                    src={skill.logo}
+                    alt={skill.name}
+                    className="w-10 h-10 object-contain filter group-hover:brightness-110 transition-all"
+                  />
+                </div>
+                <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
+              </div>
+              <div className="mt-3">
+                <div className="flex justify-between text-sm text-slate-400 mb-1">
+                  <span>Proficiency</span>
+                  <span>{skill.level}%</span>
+                </div>
+                <div className="w-full bg-slate-700/50 rounded-full h-2 overflow-hidden">
+                  <motion.div 
+                    className="bg-gradient-to-r from-cyan-500 to-amber-500 h-2 rounded-full"
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${skill.level}%` }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }}
+                  ></motion.div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        <div className="mt-8 grid md:grid-cols-3 gap-6">
+          {[
+            { icon: Zap, title: "Agile Frameworks", desc: "Scrum, Kanban, SAFe, Lean", color: "cyan" },
+            { icon: FolderKanban, title: "Tools & Platforms", desc: "JIRA, Confluence, ServiceNow, Miro", color: "amber" },
+            { icon: ChartBar, title: "Analytics & CI/CD", desc: "SQL, KPI Tracking, CI/CD Pipelines", color: "green" }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -5, scale: 1.05 }}
+              className={`text-center p-4 bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-600/10 rounded-xl border border-${item.color}-500/20`}
+            >
+              <item.icon className={`w-10 h-10 text-${item.color}-400 mx-auto mb-2`} />
+              <h4 className="text-xl font-bold text-white mb-1">{item.title}</h4>
+              <p className="text-slate-300 text-sm">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Experience Section */}
+      <section id="experience" className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative">
+        <FloatingOrb delay={0} size="w-48 h-48" color="indigo" />
+        <FloatingOrb delay={3} size="w-40 h-40" color="teal" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
+            <Briefcase className="w-7 h-7" /> Professional Experience
+          </h3>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 mx-auto rounded-full"></div>
+        </motion.div>
+        <div className="relative">
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 to-amber-500 hidden md:block"></div>
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
+              whileHover={{ y: -3, boxShadow: "0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04)" }}
+              className={`mb-8 md:ml-12 p-5 md:p-6 bg-gradient-to-br from-slate-800/60 to-slate-700/60 rounded-xl border border-slate-600/30 backdrop-blur-sm relative group hover:shadow-xl transition-all duration-300 ${
+                i === experiences.length - 1 ? 'mb-0' : ''
+              }`}
+            >
+              <div className="absolute -left-16 top-6 w-3 h-3 bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full border-2 border-slate-800 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                <div>
+                  <h4 className="text-xl font-bold text-amber-300 mb-1">{exp.role}</h4>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 text-slate-400 text-base">
+                    <p className="font-medium">{exp.company}</p>
+                    <div className="hidden sm:block w-1 h-1 bg-slate-400 rounded-full"></div>
+                    <p>{exp.period}</p>
+                    <div className="hidden sm:block w-1 h-1 bg-slate-400 rounded-full"></div>
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-4 h-4" />
+                      <span>{exp.location}</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-3 md:mt-0 flex flex-wrap gap-2">
+                  {exp.achievements && exp.achievements.slice(0, 2).map((achievement, idx) => (
+                    <motion.div
+                      key={idx}
+                      whileHover={{ scale: 1.05 }}
+                      className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 px-2 py-1 rounded-full text-sm font-medium border border-green-500/30"
+                    >
+                      {achievement.split(' ')[0]}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="text-xl font-semibold text-white mb-3 flex items-center gap-1">
+                    <Target className="w-5 h-5 text-cyan-400" />
+                    Key Responsibilities
+                  </h5>
+                  <ul className="space-y-2">
+                    {exp.highlights.map((h, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -15 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.4 }}
+                        whileHover={{ x: 0 }}
+                        className="flex gap-2 text-slate-300 text-base leading-relaxed"
+                      >
+                        <motion.span 
+                          className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"
+                          animate={{ scale: [1, 1.3, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
+                        />
+                        {h}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="bg-slate-700/30 p-4 rounded-lg border border-slate-600/30">
+                  <h5 className="text-xl font-semibold text-white mb-3 flex items-center gap-1">
+                    <Star className="w-5 h-5 text-amber-400" />
+                    Key Achievements
+                  </h5>
+                  <ul className="space-y-2">
+                    {exp.achievements.map((a, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, x: -15 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.4 }}
+                        whileHover={{ x: 0 }}
+                        className="flex gap-2 text-slate-300 text-base leading-relaxed"
+                      >
+                        <motion.span 
+                          className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-2 flex-shrink-0"
+                          animate={{ scale: [1, 1.3, 1] }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
+                        />
+                        {a}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Projects Section */}
+      <section
+        id="projects"
+        className="max-w-6xl mx-auto px-4 py-12 md:py-16 bg-gradient-to-br from-slate-900/30 to-slate-800/30 rounded-2xl backdrop-blur-sm border border-slate-700/30 my-8 relative overflow-hidden"
+      >
+        <FloatingOrb delay={0} size="w-64 h-64" color="teal" />
+        <FloatingOrb delay={3} size="w-56 h-56" color="purple" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-8"
+        >
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
+            <FolderKanban className="w-7 h-7" /> Key Projects & Impact
+          </h3>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full"></div>
+        </motion.div>
+        <div className="grid md:grid-cols-2 gap-6">
+          <motion.div
+            whileHover={{ y: -8, scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-6 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm group"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-xl font-bold text-cyan-300">ServiceNow Platform Transformation</h4>
+              <div className="bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 text-cyan-300 px-2 py-1 rounded-full text-sm font-medium border border-cyan-500/30">
+                ServiceNow
+              </div>
+            </div>
+            <div className="space-y-3 mb-4">
+              <p className="text-slate-300 text-base leading-relaxed">
+                Led Agile transformation for ServiceNow platform implementation across ITSM, ITOM, and other modules, ensuring alignment with enterprise priorities and platform governance.
+              </p>
+              <div className="grid grid-cols-2 gap-3 text-center p-3 bg-slate-700/30 rounded-lg">
+                {[
+                  { value: "15%", label: "Release Success Rate ↑", color: "green-400" },
+                  { value: "18%", label: "Sprint Predictability ↑", color: "blue-400" },
+                  { value: "25%", label: "Sprint Disruptions ↓", color: "amber-400" },
+                  { value: "20%", label: "Sprint Velocity ↑", color: "purple-400" }
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    className="group"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                  >
+                    <div className={`text-xl font-bold text-${stat.color}`}>{stat.value}</div>
+                    <div className="text-xs text-slate-400">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <div className="pt-4 border-t border-slate-600/50">
+              <h5 className="font-semibold text-white mb-2 text-lg">Key Contributions:</h5>
+              <ul className="space-y-1 text-slate-300 text-sm">
+                {[
+                  "Facilitated collaborative sessions with stakeholders to define product goals and refine roadmap",
+                  "Coached developers, admins, and business stakeholders on Agile best practices",
+                  "Implemented process improvements that reduced post-release defects by 22%"
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -15 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                    whileHover={{ x: 0 }}
+                    className="flex items-start gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+          <motion.div
+            whileHover={{ y: -8, scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-6 rounded-xl border border-slate-600/30 hover:border-amber-500/50 transition-all duration-300 backdrop-blur-sm group"
+          >
+            <div className="flex items-center justify-between mb-4">
+              <h4 className="text-xl font-bold text-amber-300">Insurance Systems Optimization</h4>
+              <div className="bg-gradient-to-r from-amber-500/20 to-orange-600/20 text-amber-300 px-2 py-1 rounded-full text-sm font-medium border border-amber-500/30">
+                New York Life
+              </div>
+            </div>
+            <div className="space-y-3 mb-4">
+              <p className="text-slate-300 text-base leading-relaxed">
+                Drove Agile adoption across insurance and financial services teams, improving workflow efficiency while ensuring compliance with regulatory and security requirements.
+              </p>
+              <div className="grid grid-cols-2 gap-3 text-center p-3 bg-slate-700/30 rounded-lg">
+                {[
+                  { value: "95%", label: "On-time Delivery", color: "green-400" },
+                  { value: "30%", label: "Story Rework ↓", color: "blue-400" },
+                  { value: "25%", label: "Agile Adoption ↑", color: "amber-400" },
+                  { value: "22%", label: "Operational Efficiency ↑", color: "purple-400" }
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    className="group"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.5 }}
+                  >
+                    <div className={`text-xl font-bold text-${stat.color}`}>{stat.value}</div>
+                    <div className="text-xs text-slate-400">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+            <div className="pt-4 border-t border-slate-600/50">
+              <h5 className="font-semibold text-white mb-2 text-lg">Key Contributions:</h5>
+              <ul className="space-y-1 text-slate-300 text-sm">
+                {[
+                  "Supported teams in achieving 95% on-time delivery against sprint commitments",
+                  "Reduced critical task delays by 15% through effective blocker removal",
+                  "Improved customer experience ratings by 18% through Agile process improvements"
+                ].map((item, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -15 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1, duration: 0.4 }}
+                    whileHover={{ x: 0 }}
+                    className="flex items-start gap-1.5"
+                  >
+                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          {[
+            { value: "30%", label: "Average Efficiency Improvement", color: "cyan-400" },
+            { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-400" },
+            { value: "95%", label: "On-time Delivery Rate", color: "green-400" }
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05, y: -3 }}
+              className="text-center p-4 bg-gradient-to-br from-slate-800/60 to-slate-700/60 rounded-xl border border-slate-600/30"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
+            >
+              <div className={`text-2xl font-bold text-${stat.color} mb-1`}>{stat.value}</div>
+              <div className="text-slate-300 text-sm">{stat.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Contact Section */}
+      <section id="contact" className="max-w-6xl mx-auto px-4 py-12 md:py-16 text-center relative">
+        <FloatingOrb delay={0} size="w-48 h-48" color="cyan" />
+        <FloatingOrb delay={3} size="w-40 h-40" color="amber" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="mb-8"
+        >
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
+            Contact Information
+          </h3>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 mx-auto rounded-full mb-4"></div>
+          <p className="text-slate-300 max-w-xl mx-auto text-base md:text-lg">
+            I'm always interested in new opportunities and challenges. Let's discuss how I can help your team achieve Agile excellence.
+          </p>
+        </motion.div>
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {[
+            { icon: Phone, title: "Phone", value: "+1 925-922-7772", desc: "Available during business hours" },
+            { icon: Mail, title: "Email", value: "4ishasharma@gmail.com", desc: "Respond within 24 hours" },
+            { icon: MapPin, title: "Location", value: "United States", desc: "Remote work friendly" }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -8, scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+              className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 p-5 rounded-xl border border-slate-600/30 backdrop-blur-sm group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.5 }}
+            >
+              <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:from-cyan-500/30 group-hover:to-cyan-600/30 transition-colors">
+                <item.icon className="w-7 h-7 text-cyan-400" />
+              </div>
+              <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
+              <p className="text-slate-300 text-base break-all">{item.value}</p>
+              <p className="text-slate-400 text-sm mt-2">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+      {/* Footer */}
+      <footer className="bg-slate-950/90 backdrop-blur-md text-slate-400 py-8 text-center relative border-t border-slate-700/30">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="mb-4">
+            <h4 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent mb-2">
+              Ichha Sharma
+            </h4>
+            <p className="text-slate-400 text-base">
+              Certified Scrum Master & Product Owner | Agile Transformation Specialist
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <p>© {new Date().getFullYear()} Ichha Sharma. All rights reserved.</p>
+            <div className="flex gap-4">
+              <span className="text-pink-400">Built with React</span>
+              <span className="text-cyan-400">+ Tailwind CSS</span>
+              <span className="text-amber-400">+ Framer Motion</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+      {/* Scroll to Top */}
+      {showScroll && (
+        <motion.button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          whileHover={{ scale: 1.1, rotate: 360 }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-6 right-6 p-3 bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 text-white rounded-full shadow-md z-50 transition-all duration-300"
+        >
+          <ArrowUp className="w-5 h-5" />
+        </motion.button>
+      )}
+    </motion.div>
+  );
+}
