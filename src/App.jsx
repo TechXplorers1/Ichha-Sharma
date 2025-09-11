@@ -26,7 +26,8 @@ import jiraLogo from "./assets/Jira.jpg";
 import servicenowLogo from "./assets/Servicenow.jpg";
 import sqlLogo from "./assets/SQL.jpg";
 import agileLogo from "./assets/Agile.jpg";
-import resumePDF from "./assets/resume.pdf"; // <-- UPDATE THIS FILENAME
+import resumePDF from "./assets/resume.pdf"; 
+import Avatar from "./assets/Avatar.png";
 export default function PortfolioWebsite() {
   const [showScroll, setShowScroll] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -43,6 +44,16 @@ export default function PortfolioWebsite() {
     projects: useRef(null),
     contact: useRef(null),
   };
+  const Logo = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+      <circle cx="50" cy="50" r="45" fill="#3B82F6" />
+      <circle cx="35" cy="40" r="10" fill="#F97316" />
+      <circle cx="65" cy="40" r="10" fill="#F97316" />
+      <path d="M35 60 Q50 70, 65 60" stroke="#F97316" stroke-width="4" fill="none" />
+    </svg>
+  );
+};
   useEffect(() => {
     const handleScroll = () => {
       setShowScroll(window.scrollY > 300);
@@ -425,20 +436,19 @@ export default function PortfolioWebsite() {
           className="text-center z-10 max-w-3xl mx-auto relative"
         >
           {/* Avatar Profile - Increased size and added contact info */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
-            className="w-40 h-40 md:w-48 md:h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden"
-          >
-            {/* Placeholder for avatar image - replace with actual image */}
-            <div className="w-full h-full bg-slate-700 flex items-center justify-center text-white text-4xl font-bold">
-              IS
-            </div>
-            {/* If you have an actual avatar image, replace the div above with:
-            <img src="/path-to-your-avatar.jpg" alt="Ichha Sharma" className="w-full h-full object-cover" />
-            */}
-          </motion.div>
+{/* Avatar Profile - Increased size and added contact info */}
+<motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
+  className="w-64 h-64 md:w-72 md:h-72 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden -mt-6"
+>
+  <img 
+    src={Avatar} 
+    alt="Ichha Sharma" 
+    className="w-full h-full object-contain" 
+  />
+</motion.div>
           {/* Contact info under profile */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6 text-slate-300 text-sm">
             <div className="flex items-center gap-1">
