@@ -436,36 +436,35 @@ export default function PortfolioWebsite() {
           className="text-center z-10 max-w-3xl mx-auto relative"
         >
           {/* Avatar Profile - Increased size and added contact info */}
-{/* Avatar Profile - Increased size and added contact info */}
-<motion.div
-  initial={{ opacity: 0, scale: 0.8 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
-  className="w-64 h-64 md:w-72 md:h-72 mx-auto mb-4 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden -mt-6"
->
-  <img 
-    src={Avatar} 
-    alt="Ichha Sharma" 
-    className="w-full h-full object-contain" 
-  />
-</motion.div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
+            className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden -mt-6"
+          >
+            <img 
+              src={Avatar} 
+              alt="Ichha Sharma" 
+              className="w-full h-full object-contain" 
+            />
+          </motion.div>
           {/* Contact info under profile */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-6 text-slate-300 text-sm">
+          <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-300 text-xs sm:text-sm">
             <div className="flex items-center gap-1">
-              <Phone className="w-3.5 h-3.5 text-cyan-400" />
+              <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400" />
               +1 925-922-7772
             </div>
             <div className="flex items-center gap-1">
-              <Mail className="w-3.5 h-3.5 text-amber-400" />
+              <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
               4ishasharma@gmail.com
             </div>
             <div className="flex items-center gap-1">
-              <MapPin className="w-3.5 h-3.5 text-green-400" />
+              <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-400" />
               United States (Remote)
             </div>
           </div>
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-amber-400 to-pink-400 bg-clip-text text-transparent leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-cyan-400 via-amber-400 to-pink-400 bg-clip-text text-transparent leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
@@ -473,7 +472,7 @@ export default function PortfolioWebsite() {
             Certified Scrum Master & Product Owner
           </motion.h2>
           <motion.p
-            className="text-lg md:text-xl text-slate-300 mb-6 leading-relaxed max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
@@ -481,25 +480,25 @@ export default function PortfolioWebsite() {
             Driving Agile transformations and delivering enterprise IT solutions with 7+ years of experience in ServiceNow, Insurance, and Financial Services domains.
           </motion.p>
           {/* Updated button order with FUNCTION call for download */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
             {/* CHANGED: onClick now calls handleDownloadResume */}
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleDownloadResume}
               disabled={isDownloading}
-              className="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 text-white font-medium px-6 py-3 rounded-full shadow-md transition-all duration-300 text-sm flex items-center justify-center gap-2"
+              className="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 text-white font-medium px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-md transition-all duration-300 text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2"
             >
-              <Download size={16} />
+              <Download size={14} className="sm:w-4 sm:h-4" />
               {isDownloading ? 'Downloading...' : 'Download Resume'}
             </motion.button>
             <motion.div
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => scrollToSection('contact')}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-6 py-3 rounded-full shadow-md font-medium transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer text-sm"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-md font-medium transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer text-xs sm:text-sm"
             >
-              <MessageSquare size={16} />
+              <MessageSquare size={14} className="sm:w-4 sm:h-4" />
               Contact Details
             </motion.div>
           </div>
@@ -507,7 +506,7 @@ export default function PortfolioWebsite() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center"
+            className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center"
           >
             {[
               { value: "7+", label: "Years Experience", color: "cyan-400" },
@@ -518,13 +517,13 @@ export default function PortfolioWebsite() {
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white/5 backdrop-blur-sm rounded-lg p-3 border border-white/10"
+                className="bg-white/5 backdrop-blur-sm rounded-lg p-2 sm:p-3 border border-white/10"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
               >
-                <div className={`text-2xl md:text-3xl font-bold text-${stat.color}`}>{stat.value}</div>
-                <div className="text-xs text-slate-400">{stat.label}</div>
+                <div className={`text-xl sm:text-2xl md:text-3xl font-bold text-${stat.color}`}>{stat.value}</div>
+                <div className="text-[10px] sm:text-xs text-slate-400">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -556,7 +555,7 @@ export default function PortfolioWebsite() {
           </h3>
           <div className="w-20 h-0.5 bg-gradient-to-r from-cyan-500 to-amber-500 mx-auto rounded-full"></div>
         </motion.div>
-        <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -620,14 +619,14 @@ export default function PortfolioWebsite() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.4 }}
                   whileHover={{ x: 0, scale: 1.02 }}
-                  className="flex items-center gap-2 p-2 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors"
+                  className="flex items-center gap-1.5 sm:gap-2 p-2 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors"
                 >
                   <motion.div 
                     className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
                     animate={{ scale: [1, 1.3, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                   />
-                  <span className="text-slate-300 text-base">{item}</span>
+                  <span className="text-slate-300 text-xs sm:text-base">{item}</span>
                 </motion.div>
               ))}
             </div>
@@ -704,7 +703,7 @@ export default function PortfolioWebsite() {
           </h3>
           <div className="w-20 h-0.5 bg-gradient-to-r from-pink-500 to-cyan-500 mx-auto rounded-full"></div>
         </motion.div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill, i) => (
             <motion.div
               key={i}
@@ -713,20 +712,20 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.03 }}
-              className="group bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-5 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm"
+              className="group bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-4 sm:p-5 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm"
             >
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-amber-500/20 rounded-lg flex items-center justify-center group-hover:from-cyan-500/30 group-hover:to-amber-500/30 transition-colors">
+                <div className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-cyan-500/20 to-amber-500/20 rounded-lg flex items-center justify-center group-hover:from-cyan-500/30 group-hover:to-amber-500/30 transition-colors">
                   <img
                     src={skill.logo}
                     alt={skill.name}
-                    className="w-10 h-10 object-contain filter group-hover:brightness-110 transition-all"
+                    className="w-8 sm:w-10 h-8 sm:h-10 object-contain filter group-hover:brightness-110 transition-all"
                   />
                 </div>
-                <h4 className="text-lg font-semibold text-white">{skill.name}</h4>
+                <h4 className="text-base sm:text-lg font-semibold text-white">{skill.name}</h4>
               </div>
               <div className="mt-3">
-                <div className="flex justify-between text-sm text-slate-400 mb-1">
+                <div className="flex justify-between text-xs sm:text-sm text-slate-400 mb-1">
                   <span>Proficiency</span>
                   <span>{skill.level}%</span>
                 </div>
@@ -743,7 +742,7 @@ export default function PortfolioWebsite() {
             </motion.div>
           ))}
         </div>
-        <div className="mt-8 grid md:grid-cols-3 gap-6">
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           {[
             { icon: Zap, title: "Agile Frameworks", desc: "Scrum, Kanban, SAFe, Lean", color: "cyan" },
             { icon: FolderKanban, title: "Tools & Platforms", desc: "JIRA, Confluence, ServiceNow, Miro", color: "amber" },
@@ -756,11 +755,11 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.05 }}
-              className={`text-center p-4 bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-600/10 rounded-xl border border-${item.color}-500/20`}
+              className={`text-center p-3 sm:p-4 bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-600/10 rounded-xl border border-${item.color}-500/20`}
             >
-              <item.icon className={`w-10 h-10 text-${item.color}-400 mx-auto mb-2`} />
-              <h4 className="text-xl font-bold text-white mb-1">{item.title}</h4>
-              <p className="text-slate-300 text-sm">{item.desc}</p>
+              <item.icon className={`w-8 sm:w-10 h-8 sm:h-10 text-${item.color}-400 mx-auto mb-2`} />
+              <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{item.title}</h4>
+              <p className="text-slate-300 text-xs sm:text-sm">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -799,33 +798,33 @@ export default function PortfolioWebsite() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
                   <h4 className="text-xl font-bold text-amber-300 mb-1">{exp.role}</h4>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 text-slate-400 text-base">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-slate-400 text-xs sm:text-base">
                     <p className="font-medium">{exp.company}</p>
                     <div className="hidden sm:block w-1 h-1 bg-slate-400 rounded-full"></div>
                     <p>{exp.period}</p>
                     <div className="hidden sm:block w-1 h-1 bg-slate-400 rounded-full"></div>
                     <div className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
+                      <MapPin className="w-3 h-3 sm:w-4 sm:h-4" />
                       <span>{exp.location}</span>
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 md:mt-0 flex flex-wrap gap-2">
+                <div className="mt-2 sm:mt-3 md:mt-0 flex flex-wrap gap-1.5">
                   {exp.achievements && exp.achievements.slice(0, 2).map((achievement, idx) => (
                     <motion.div
                       key={idx}
                       whileHover={{ scale: 1.05 }}
-                      className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 px-2 py-1 rounded-full text-sm font-medium border border-green-500/30"
+                      className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium border border-green-500/30"
                     >
                       {achievement.split(' ')[0]}
                     </motion.div>
                   ))}
                 </div>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-4 sm:gap-6">
                 <div>
-                  <h5 className="text-xl font-semibold text-white mb-3 flex items-center gap-1">
-                    <Target className="w-5 h-5 text-cyan-400" />
+                  <h5 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center gap-1">
+                    <Target className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
                     Key Responsibilities
                   </h5>
                   <ul className="space-y-2">
@@ -837,10 +836,10 @@ export default function PortfolioWebsite() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.4 }}
                         whileHover={{ x: 0 }}
-                        className="flex gap-2 text-slate-300 text-base leading-relaxed"
+                        className="flex gap-2 text-slate-300 text-xs sm:text-base leading-relaxed"
                       >
                         <motion.span 
-                          className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-2 flex-shrink-0"
+                          className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                         />
@@ -849,9 +848,9 @@ export default function PortfolioWebsite() {
                     ))}
                   </ul>
                 </div>
-                <div className="bg-slate-700/30 p-4 rounded-lg border border-slate-600/30">
-                  <h5 className="text-xl font-semibold text-white mb-3 flex items-center gap-1">
-                    <Star className="w-5 h-5 text-amber-400" />
+                <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg border border-slate-600/30">
+                  <h5 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center gap-1">
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
                     Key Achievements
                   </h5>
                   <ul className="space-y-2">
@@ -863,10 +862,10 @@ export default function PortfolioWebsite() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.4 }}
                         whileHover={{ x: 0 }}
-                        className="flex gap-2 text-slate-300 text-base leading-relaxed"
+                        className="flex gap-2 text-slate-300 text-xs sm:text-base leading-relaxed"
                       >
                         <motion.span 
-                          className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-2 flex-shrink-0"
+                          className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                         />
@@ -899,23 +898,23 @@ export default function PortfolioWebsite() {
           </h3>
           <div className="w-20 h-0.5 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full"></div>
         </motion.div>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.div
             whileHover={{ y: -8, scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-6 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm group"
+            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-4 sm:p-6 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm group"
           >
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-xl font-bold text-cyan-300">ServiceNow Platform Transformation</h4>
-              <div className="bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 text-cyan-300 px-2 py-1 rounded-full text-sm font-medium border border-cyan-500/30">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
+              <h4 className="text-lg sm:text-xl font-bold text-cyan-300">ServiceNow Platform Transformation</h4>
+              <div className="bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 text-cyan-300 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-cyan-500/30">
                 ServiceNow
               </div>
             </div>
             <div className="space-y-3 mb-4">
-              <p className="text-slate-300 text-base leading-relaxed">
+              <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
                 Led Agile transformation for ServiceNow platform implementation across ITSM, ITOM, and other modules, ensuring alignment with enterprise priorities and platform governance.
               </p>
-              <div className="grid grid-cols-2 gap-3 text-center p-3 bg-slate-700/30 rounded-lg">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center p-2 sm:p-3 bg-slate-700/30 rounded-lg">
                 {[
                   { value: "15%", label: "Release Success Rate ↑", color: "green-400" },
                   { value: "18%", label: "Sprint Predictability ↑", color: "blue-400" },
@@ -931,15 +930,15 @@ export default function PortfolioWebsite() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                   >
-                    <div className={`text-xl font-bold text-${stat.color}`}>{stat.value}</div>
-                    <div className="text-xs text-slate-400">{stat.label}</div>
+                    <div className={`text-lg sm:text-xl font-bold text-${stat.color}`}>{stat.value}</div>
+                    <div className="text-[10px] sm:text-xs text-slate-400">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
-            <div className="pt-4 border-t border-slate-600/50">
-              <h5 className="font-semibold text-white mb-2 text-lg">Key Contributions:</h5>
-              <ul className="space-y-1 text-slate-300 text-sm">
+            <div className="pt-3 sm:pt-4 border-t border-slate-600/50">
+              <h5 className="font-semibold text-white mb-2 text-base sm:text-lg">Key Contributions:</h5>
+              <ul className="space-y-1 text-slate-300 text-[10px] sm:text-sm">
                 {[
                   "Facilitated collaborative sessions with stakeholders to define product goals and refine roadmap",
                   "Coached developers, admins, and business stakeholders on Agile best practices",
@@ -954,7 +953,7 @@ export default function PortfolioWebsite() {
                     whileHover={{ x: 0 }}
                     className="flex items-start gap-1.5"
                   >
-                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1 flex-shrink-0 sm:mt-1.5"></span>
                     {item}
                   </motion.li>
                 ))}
@@ -964,19 +963,19 @@ export default function PortfolioWebsite() {
           <motion.div
             whileHover={{ y: -8, scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-6 rounded-xl border border-slate-600/30 hover:border-amber-500/50 transition-all duration-300 backdrop-blur-sm group"
+            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-4 sm:p-6 rounded-xl border border-slate-600/30 hover:border-amber-500/50 transition-all duration-300 backdrop-blur-sm group"
           >
-            <div className="flex items-center justify-between mb-4">
-              <h4 className="text-xl font-bold text-amber-300">Insurance Systems Optimization</h4>
-              <div className="bg-gradient-to-r from-amber-500/20 to-orange-600/20 text-amber-300 px-2 py-1 rounded-full text-sm font-medium border border-amber-500/30">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
+              <h4 className="text-lg sm:text-xl font-bold text-amber-300">Insurance Systems Optimization</h4>
+              <div className="bg-gradient-to-r from-amber-500/20 to-orange-600/20 text-amber-300 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-amber-500/30">
                 New York Life
               </div>
             </div>
             <div className="space-y-3 mb-4">
-              <p className="text-slate-300 text-base leading-relaxed">
+              <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
                 Drove Agile adoption across insurance and financial services teams, improving workflow efficiency while ensuring compliance with regulatory and security requirements.
               </p>
-              <div className="grid grid-cols-2 gap-3 text-center p-3 bg-slate-700/30 rounded-lg">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center p-2 sm:p-3 bg-slate-700/30 rounded-lg">
                 {[
                   { value: "95%", label: "On-time Delivery", color: "green-400" },
                   { value: "30%", label: "Story Rework ↓", color: "blue-400" },
@@ -992,15 +991,15 @@ export default function PortfolioWebsite() {
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                   >
-                    <div className={`text-xl font-bold text-${stat.color}`}>{stat.value}</div>
-                    <div className="text-xs text-slate-400">{stat.label}</div>
+                    <div className={`text-lg sm:text-xl font-bold text-${stat.color}`}>{stat.value}</div>
+                    <div className="text-[10px] sm:text-xs text-slate-400">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
-            <div className="pt-4 border-t border-slate-600/50">
-              <h5 className="font-semibold text-white mb-2 text-lg">Key Contributions:</h5>
-              <ul className="space-y-1 text-slate-300 text-sm">
+            <div className="pt-3 sm:pt-4 border-t border-slate-600/50">
+              <h5 className="font-semibold text-white mb-2 text-base sm:text-lg">Key Contributions:</h5>
+              <ul className="space-y-1 text-slate-300 text-[10px] sm:text-sm">
                 {[
                   "Supported teams in achieving 95% on-time delivery against sprint commitments",
                   "Reduced critical task delays by 15% through effective blocker removal",
@@ -1015,7 +1014,7 @@ export default function PortfolioWebsite() {
                     whileHover={{ x: 0 }}
                     className="flex items-start gap-1.5"
                   >
-                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 flex-shrink-0"></span>
+                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1 flex-shrink-0 sm:mt-1.5"></span>
                     {item}
                   </motion.li>
                 ))}
@@ -1023,7 +1022,7 @@ export default function PortfolioWebsite() {
             </div>
           </motion.div>
         </div>
-        <div className="mt-8 grid md:grid-cols-3 gap-4">
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {[
             { value: "30%", label: "Average Efficiency Improvement", color: "cyan-400" },
             { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-400" },
@@ -1032,14 +1031,14 @@ export default function PortfolioWebsite() {
             <motion.div
               key={i}
               whileHover={{ scale: 1.05, y: -3 }}
-              className="text-center p-4 bg-gradient-to-br from-slate-800/60 to-slate-700/60 rounded-xl border border-slate-600/30"
+              className="text-center p-3 sm:p-4 bg-gradient-to-br from-slate-800/60 to-slate-700/60 rounded-xl border border-slate-600/30"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
             >
-              <div className={`text-2xl font-bold text-${stat.color} mb-1`}>{stat.value}</div>
-              <div className="text-slate-300 text-sm">{stat.label}</div>
+              <div className={`text-xl sm:text-2xl font-bold text-${stat.color} mb-1`}>{stat.value}</div>
+              <div className="text-slate-300 text-xs sm:text-sm">{stat.label}</div>
             </motion.div>
           ))}
         </div>
@@ -1063,7 +1062,7 @@ export default function PortfolioWebsite() {
             I'm always interested in new opportunities and challenges. Let's discuss how I can help your team achieve Agile excellence.
           </p>
         </motion.div>
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {[
             { icon: Phone, title: "Phone", value: "+1 925-922-7772", desc: "Available during business hours" },
             { icon: Mail, title: "Email", value: "4ishasharma@gmail.com", desc: "Respond within 24 hours" },
@@ -1073,18 +1072,18 @@ export default function PortfolioWebsite() {
               key={i}
               whileHover={{ y: -8, scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 p-5 rounded-xl border border-slate-600/30 backdrop-blur-sm group"
+              className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 p-4 sm:p-5 rounded-xl border border-slate-600/30 backdrop-blur-sm group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
             >
-              <div className="w-14 h-14 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:from-cyan-500/30 group-hover:to-cyan-600/30 transition-colors">
-                <item.icon className="w-7 h-7 text-cyan-400" />
+              <div className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-lg flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:from-cyan-500/30 group-hover:to-cyan-600/30 transition-colors">
+                <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-cyan-400" />
               </div>
-              <h4 className="text-xl font-bold text-white mb-2">{item.title}</h4>
-              <p className="text-slate-300 text-base break-all">{item.value}</p>
-              <p className="text-slate-400 text-sm mt-2">{item.desc}</p>
+              <h4 className="text-lg sm:text-xl font-bold text-white mb-2">{item.title}</h4>
+              <p className="text-slate-300 text-sm sm:text-base break-all">{item.value}</p>
+              <p className="text-slate-400 text-xs sm:text-sm mt-2">{item.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -1100,9 +1099,9 @@ export default function PortfolioWebsite() {
               Certified Scrum Master & Product Owner | Agile Transformation Specialist
             </p>
           </div>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-4 text-xs sm:text-sm">
             <p>© {new Date().getFullYear()} Ichha Sharma. All rights reserved.</p>
-            <div className="flex gap-4">
+            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
               <span className="text-pink-400">Built with React</span>
               <span className="text-cyan-400">+ Tailwind CSS</span>
               <span className="text-amber-400">+ Framer Motion</span>
