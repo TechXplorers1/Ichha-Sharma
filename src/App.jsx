@@ -27,7 +27,7 @@ import servicenowLogo from "./assets/Servicenow.jpg";
 import sqlLogo from "./assets/SQL.jpg";
 import agileLogo from "./assets/Agile.jpg";
 import resumePDF from "./assets/resume.pdf"; 
-import Avatar from "./assets/Avatar.png";
+import Avatar from "./assets/Isha-sharma-img.JPG";
 export default function PortfolioWebsite() {
   const [showScroll, setShowScroll] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
@@ -161,18 +161,18 @@ export default function PortfolioWebsite() {
       date: "2022",
       description: "Certified in maximizing product value through effective Product Backlog management and stakeholder collaboration."
     },
-    {
-      title: "Agile Certified Practitioner (PMI-ACP)",
-      issuer: "Project Management Institute",
-      date: "2021",
-      description: "Certified in Agile principles and practices including Scrum, Kanban, Lean, and Extreme Programming."
-    },
-    {
-      title: "ServiceNow Certified System Administrator",
-      issuer: "ServiceNow",
-      date: "2023",
-      description: "Certified in configuring, implementing, and maintaining ServiceNow applications and platform features."
-    }
+    // {
+    //   title: "Agile Certified Practitioner (PMI-ACP)",
+    //   issuer: "Project Management Institute",
+    //   date: "2021",
+    //   description: "Certified in Agile principles and practices including Scrum, Kanban, Lean, and Extreme Programming."
+    // },
+    // {
+    //   title: "ServiceNow Certified System Administrator",
+    //   issuer: "ServiceNow",
+    //   date: "2023",
+    //   description: "Certified in configuring, implementing, and maintaining ServiceNow applications and platform features."
+    // }
   ];
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -435,34 +435,46 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center z-10 max-w-3xl mx-auto relative"
         >
-          {/* Avatar Profile - Increased size and added contact info */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
-            className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden -mt-6"
-          >
-            <img 
-              src={Avatar} 
-              alt="Ichha Sharma" 
-              className="w-full h-full object-contain" 
-            />
-          </motion.div>
-          {/* Contact info under profile */}
-          <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-300 text-xs sm:text-sm">
-            <div className="flex items-center gap-1">
-              <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400" />
-              +1 925-922-7772
-            </div>
-            <div className="flex items-center gap-1">
-              <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
-              4ishasharma@gmail.com
-            </div>
-            <div className="flex items-center gap-1">
-              <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-400" />
-              United States (Remote)
-            </div>
-          </div>
+ <motion.div
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
+  className="w-52 sm:w-60 md:w-72 lg:w-80 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden -mt-6 aspect-square relative"
+>
+  <img
+    src={Avatar}
+    alt="Ichha Sharma"
+    className="w-full h-full object-cover object-center rounded-full"
+    style={{
+      objectPosition: 'center', // Ensures image is centered
+      objectFit: 'cover',        // Crops to fill
+    }}
+  />
+</motion.div>
+{/* Added: Text under the profile picture */}
+<motion.div
+  initial={{ opacity: 0, y: 10 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3, duration: 0.5 }}
+  className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6 sm:mb-8"
+>
+  Isha Sharma
+</motion.div>
+{/* Contact info under profile */}
+<div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-300 text-xs sm:text-sm">
+  <div className="flex items-center gap-1">
+    <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400" />
+    +1 925-922-7772
+  </div>
+  <div className="flex items-center gap-1">
+    <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
+    4ishasharma@gmail.com
+  </div>
+  <div className="flex items-center gap-1">
+    <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-400" />
+    United States (Hybrid)
+  </div>
+</div>
           <motion.h2 
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-cyan-400 via-amber-400 to-pink-400 bg-clip-text text-transparent leading-tight"
             initial={{ opacity: 0, y: 20 }}
