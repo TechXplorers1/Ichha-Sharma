@@ -1101,11 +1101,11 @@ export default function PortfolioWebsite() {
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-4 text-xs sm:text-sm">
             <p>© {new Date().getFullYear()} Ichha Sharma. All rights reserved.</p>
-            <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
+            {/* <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
               <span className="text-pink-400">Built with React</span>
               <span className="text-cyan-400">+ Tailwind CSS</span>
               <span className="text-amber-400">+ Framer Motion</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </footer>
