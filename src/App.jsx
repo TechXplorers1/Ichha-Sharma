@@ -188,31 +188,9 @@ export default function PortfolioWebsite() {
       setIsDownloading(false);
     }, 1000);
   };
-  // Enhanced floating animation for decorative elements
+  // Enhanced floating animation for decorative elements (REMOVED FOR LIGHT THEME)
   const FloatingOrb = ({ delay = 0, size = "w-64 h-64", color = "cyan" }) => {
-    return (
-      <motion.div
-        className={`${size} rounded-full blur-3xl absolute opacity-20`}
-        style={{
-          background: color === "cyan" 
-            ? "linear-gradient(135deg, #06b6d4, #0891b2)" 
-            : color === "amber" 
-              ? "linear-gradient(135deg, #f59e0b, #d97706)"
-              : "linear-gradient(135deg, #8b5cf6, #7c3aed)"
-        }}
-        animate={{
-          y: [0, -20, 0],
-          x: [0, 20, 0],
-          opacity: [0.1, 0.3, 0.1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          delay: delay,
-          ease: "easeInOut"
-        }}
-      />
-    );
+    return null; 
   };
   // Resume content from your PDF (formatted for display)
   const resumeContent = {
@@ -336,18 +314,18 @@ export default function PortfolioWebsite() {
   };
   return (
     <motion.div 
-      className="scroll-smooth bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-100 font-sans"
+      className="scroll-smooth bg-white text-slate-900 font-sans" // CHANGED: Main background/text colors
       initial={{ opacity: 0, y: 30 }}
       animate={controls}
     >
       {/* Navbar */}
-      <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-700/50">
+      <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200"> {/* CHANGED: Navbar background/border */}
         <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-            className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent"
+            className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-cyan-600 to-amber-600 bg-clip-text text-transparent" // CHANGED: Colors to be darker/more vibrant on white
           >
             Ichha (Isha)Sharma
           </motion.h1>
@@ -360,8 +338,8 @@ export default function PortfolioWebsite() {
                 whileTap={{ scale: 0.95 }}
                 className={`px-4 py-2 rounded-md transition-all duration-300 ${
                   activeSection === item.toLowerCase() 
-                    ? 'bg-gradient-to-r from-cyan-500/20 to-amber-500/20 text-amber-300 border border-amber-500/30' 
-                    : 'hover:bg-slate-800/50 hover:text-amber-300'
+                    ? 'bg-amber-100 text-amber-700 border border-amber-300' // CHANGED: Active link style for light theme
+                    : 'hover:bg-slate-100 hover:text-amber-600 text-slate-600' // CHANGED: Inactive link style
                 }`}
               >
                 <a
@@ -379,7 +357,7 @@ export default function PortfolioWebsite() {
           </ul>
           {/* Mobile Menu Button */}
           <button 
-            className="md:hidden p-2 rounded-lg hover:bg-slate-800/50 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors text-slate-700" // CHANGED: Mobile button color
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -394,7 +372,7 @@ export default function PortfolioWebsite() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="md:hidden bg-slate-950/95 backdrop-blur-md border-t border-slate-700/50"
+              className="md:hidden bg-white/95 backdrop-blur-md border-t border-slate-200" // CHANGED: Mobile menu background/border
             >
               <div className="flex flex-col py-4 px-4 space-y-3">
                 {["About", "Certificates", "Skills", "Experience", "Projects", "Contact"].map((item, i) => (
@@ -403,7 +381,7 @@ export default function PortfolioWebsite() {
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.98 }}
                     onClick={() => scrollToSection(item.toLowerCase())}
-                    className="text-left py-3 px-4 rounded-lg hover:bg-slate-800/50 transition-all duration-300 text-slate-300 hover:text-amber-300 font-medium text-base"
+                    className="text-left py-3 px-4 rounded-lg hover:bg-slate-100 transition-all duration-300 text-slate-700 hover:text-amber-600 font-medium text-base" // CHANGED: Mobile menu item style
                   >
                     {item}
                   </motion.button>
@@ -414,10 +392,10 @@ export default function PortfolioWebsite() {
         </AnimatePresence>
       </header>
       {/* Hero Section */}
-      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 relative overflow-hidden">
-        <FloatingOrb delay={0} size="w-80 h-80" color="cyan" />
-        <FloatingOrb delay={2} size="w-64 h-64" color="amber" />
-        <FloatingOrb delay={4} size="w-72 h-72" color="purple" />
+      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 py-16 relative overflow-hidden bg-gray-50"> {/* CHANGED: Light gray background for contrast */}
+        <FloatingOrb delay={0} size="w-80 h-80" color="cyan" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={2} size="w-64 h-64" color="amber" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={4} size="w-72 h-72" color="purple" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -428,15 +406,15 @@ export default function PortfolioWebsite() {
   initial={{ opacity: 0, scale: 0.8 }}
   animate={{ opacity: 1, scale: 1 }}
   transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
-  className="w-52 sm:w-60 md:w-72 lg:w-80 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-cyan-400 to-amber-400 flex items-center justify-center shadow-2xl border-4 border-slate-800 overflow-hidden -mt-6 aspect-square relative"
+  className="w-52 sm:w-60 md:w-72 lg:w-80 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-cyan-400/20 to-amber-400/20 flex items-center justify-center shadow-lg border-4 border-white overflow-hidden -mt-6 aspect-square relative" // CHANGED: Border/shadow for light theme
 >
   <img
     src={Avatar}
     alt="Ichha Sharma"
     className="w-full h-full object-cover object-center rounded-full"
     style={{
-      objectPosition: 'center', // Ensures image is centered
-      objectFit: 'cover',        // Crops to fill
+      objectPosition: 'center',
+      objectFit: 'cover',
     }}
   />
 </motion.div>
@@ -445,26 +423,26 @@ export default function PortfolioWebsite() {
   initial={{ opacity: 0, y: 10 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.3, duration: 0.5 }}
-  className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6 sm:mb-8"
+  className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-6 sm:mb-8" // CHANGED: Text color
 >
   Isha Sharma
 </motion.div>
     {/* Contact info under profile */}
-    <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-300 text-xs sm:text-sm">
+    <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-600 text-xs sm:text-sm"> {/* CHANGED: Text color */}
       <div className="flex items-center gap-1">
-        <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400" />
+        <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-600" /> {/* CHANGED: Icon color for contrast */}
         +1 925-922-7772
       </div>
       <div className="flex items-center gap-1">
-        <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-400" />
+        <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-600" /> {/* CHANGED: Icon color for contrast */}
         4ishasharma@gmail.com
       </div>
       <div className="flex items-center gap-1">
-        <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-400" />
+        <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-green-600" /> {/* CHANGED: Icon color for contrast */}
         United States 
       </div>
     </div>
-          <motion.h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-cyan-400 via-amber-400 to-pink-400 bg-clip-text text-transparent leading-tight"
+          <motion.h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-cyan-600 via-amber-600 to-pink-600 bg-clip-text text-transparent leading-tight" // CHANGED: Gradient colors to be darker
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
@@ -472,7 +450,7 @@ export default function PortfolioWebsite() {
             Certified Scrum Master & Product Owner
           </motion.h2>
           <motion.p
-            className="text-base sm:text-lg md:text-xl text-slate-300 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-slate-600 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-2xl mx-auto" // CHANGED: Text color
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
@@ -487,7 +465,7 @@ export default function PortfolioWebsite() {
               whileTap={{ scale: 0.98 }}
               onClick={handleDownloadResume}
               disabled={isDownloading}
-              className="bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 text-white font-medium px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-md transition-all duration-300 text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2"
+              className="bg-gradient-to-r from-cyan-600 to-amber-600 hover:from-cyan-500 hover:to-amber-500 text-white font-medium px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg transition-all duration-300 text-xs sm:text-sm flex items-center justify-center gap-1.5 sm:gap-2" // CHANGED: Gradient colors to be darker
             >
               <Download size={14} className="sm:w-4 sm:h-4" />
               {isDownloading ? 'Downloading...' : 'Download Resume'}
@@ -496,7 +474,7 @@ export default function PortfolioWebsite() {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => scrollToSection('contact')}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-400 hover:to-pink-400 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-md font-medium transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer text-xs sm:text-sm"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg font-medium transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 cursor-pointer text-xs sm:text-sm" // CHANGED: Gradient colors to be darker
             >
               <MessageSquare size={14} className="sm:w-4 sm:h-4" />
               Contact Details
@@ -509,21 +487,21 @@ export default function PortfolioWebsite() {
             className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center"
           >
             {[
-              { value: "7+", label: "Years Experience", color: "cyan-400" },
-              { value: "30%", label: "Efficiency Gain", color: "amber-400" },
-              { value: "95%", label: "On-time Delivery", color: "green-400" },
-              { value: "40%", label: "Engagement Boost", color: "pink-400" }
+              { value: "7+", label: "Years Experience", color: "cyan-600" },
+              { value: "30%", label: "Efficiency Gain", color: "amber-600" },
+              { value: "95%", label: "On-time Delivery", color: "green-600" },
+              { value: "40%", label: "Engagement Boost", color: "pink-600" }
             ].map((stat, i) => (
               <motion.div
                 key={i}
                 whileHover={{ scale: 1.05 }}
-                className="bg-white/5 backdrop-blur-sm rounded-lg p-2 sm:p-3 border border-white/10"
+                className="bg-white rounded-lg p-2 sm:p-3 border border-slate-200 shadow-md" // CHANGED: Background/border/shadow for light theme
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
               >
                 <div className={`text-xl sm:text-2xl md:text-3xl font-bold text-${stat.color}`}>{stat.value}</div>
-                <div className="text-[10px] sm:text-xs text-slate-400">{stat.label}</div>
+                <div className="text-[10px] sm:text-xs text-slate-600">{stat.label}</div> {/* CHANGED: Text color */}
               </motion.div>
             ))}
           </motion.div>
@@ -533,7 +511,7 @@ export default function PortfolioWebsite() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-6 left-1/2 transform -translate-x-1/2"
         >
-          <ArrowUp className="w-5 h-5 text-slate-400 rotate-180" />
+          <ArrowUp className="w-5 h-5 text-slate-500 rotate-180" /> {/* CHANGED: Icon color */}
         </motion.div>
       </section>
       {/* About Section */}
@@ -541,8 +519,8 @@ export default function PortfolioWebsite() {
         id="about"
         className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative"
       >
-        <FloatingOrb delay={0} size="w-48 h-48" color="cyan" />
-        <FloatingOrb delay={3} size="w-40 h-40" color="amber" />
+        <FloatingOrb delay={0} size="w-48 h-48" color="cyan" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={3} size="w-40 h-40" color="amber" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -550,10 +528,10 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-8"
         >
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-400 to-pink-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
-            <User className="w-7 h-7" /> About Me
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-amber-600 to-pink-600 bg-clip-text text-transparent flex items-center justify-center gap-2"> {/* CHANGED: Gradient colors to be darker */}
+            <User className="w-7 h-7 text-amber-600" /> About Me {/* CHANGED: Icon color */}
           </h3>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-cyan-500 to-amber-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-cyan-600 to-amber-600 mx-auto rounded-full"></div> {/* CHANGED: Gradient colors to be darker */}
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <motion.div
@@ -563,32 +541,32 @@ export default function PortfolioWebsite() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-4"
           >
-            <h4 className="text-2xl font-bold text-white">Professional Summary</h4>
-            <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+            <h4 className="text-2xl font-bold text-slate-800">Professional Summary</h4> {/* CHANGED: Text color */}
+            <p className="text-slate-600 leading-relaxed text-base md:text-lg"> {/* CHANGED: Text color */}
               Results-driven Certified Scrum Master (PSM I) and Product Owner (PSPO) with over 7 years of experience driving Agile transformation, delivering enterprise IT, insurance, and ServiceNow platform solutions.
             </p>
-            <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+            <p className="text-slate-600 leading-relaxed text-base md:text-lg"> {/* CHANGED: Text color */}
               Proven track record in sprint planning, backlog prioritization, release management, and stakeholder alignment, achieving measurable gains in delivery predictability, quality, and time-to-market.
             </p>
-            <p className="text-slate-300 leading-relaxed text-base md:text-lg">
+            <p className="text-slate-600 leading-relaxed text-base md:text-lg"> {/* CHANGED: Text color */}
               Adept at fostering cross-functional collaboration, coaching teams on Agile best practices, and removing delivery impediments to maintain high-performance team environments.
             </p>
             <div className="grid grid-cols-2 gap-3 mt-6">
               {[
-                { value: "30%", label: "Operational Efficiency Improvement", color: "cyan-400" },
-                { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-400" }
+                { value: "30%", label: "Operational Efficiency Improvement", color: "cyan-600" },
+                { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-600" }
               ].map((stat, i) => (
                 <motion.div
                   key={i}
                   whileHover={{ scale: 1.03 }}
-                  className="bg-gradient-to-br from-slate-800 to-slate-700 p-3 rounded-lg border border-slate-600/50"
+                  className="bg-white p-3 rounded-lg border border-slate-200 shadow-md" // CHANGED: Card style for light theme
                   initial={{ opacity: 0, y: 10 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2, duration: 0.5 }}
                 >
                   <div className={`text-xl font-bold text-${stat.color}`}>{stat.value}</div>
-                  <div className="text-sm text-slate-400">{stat.label}</div>
+                  <div className="text-sm text-slate-600">{stat.label}</div> {/* CHANGED: Text color */}
                 </motion.div>
               ))}
             </div>
@@ -598,9 +576,9 @@ export default function PortfolioWebsite() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="bg-gradient-to-br from-slate-800/50 to-slate-700/50 p-6 rounded-xl border border-slate-600/30 backdrop-blur-sm"
+            className="bg-slate-100 p-6 rounded-xl border border-slate-200 shadow-lg" // CHANGED: Card style for light theme
           >
-            <h4 className="text-2xl font-bold text-white mb-4">Core Competencies</h4>
+            <h4 className="text-2xl font-bold text-slate-800 mb-4">Core Competencies</h4> {/* CHANGED: Text color */}
             <div className="space-y-2">
               {[
                 "Agile Transformation & Scrum/Kanban Methodologies",
@@ -619,25 +597,25 @@ export default function PortfolioWebsite() {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1, duration: 0.4 }}
                   whileHover={{ x: 0, scale: 1.02 }}
-                  className="flex items-center gap-1.5 sm:gap-2 p-2 bg-slate-700/30 rounded-lg hover:bg-slate-700/50 transition-colors"
+                  className="flex items-center gap-1.5 sm:gap-2 p-2 bg-white rounded-lg hover:bg-slate-50 transition-colors border border-slate-200" // CHANGED: List item style for light theme
                 >
                   <motion.div 
-                    className="w-1.5 h-1.5 bg-cyan-400 rounded-full"
+                    className="w-1.5 h-1.5 bg-cyan-600 rounded-full" // CHANGED: Icon color
                     animate={{ scale: [1, 1.3, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                   />
-                  <span className="text-slate-300 text-xs sm:text-base">{item}</span>
+                  <span className="text-slate-700 text-xs sm:text-base">{item}</span> {/* CHANGED: Text color */}
                 </motion.div>
               ))}
             </div>
-            <div className="mt-6 pt-4 border-t border-slate-600/50">
-              <div className="flex items-center gap-2 text-amber-400 mb-2">
+            <div className="mt-6 pt-4 border-t border-slate-300"> {/* CHANGED: Border color */}
+              <div className="flex items-center gap-2 text-amber-600 mb-2"> {/* CHANGED: Icon color */}
                 <Star className="w-5 h-5" />
                 <span className="font-semibold text-lg">Certifications</span>
               </div>
               <div className="space-y-1">
-                <div className="text-slate-300 text-base">Professional Scrum Master (PSM I)</div>
-                <div className="text-slate-300 text-base">Professional Scrum Product Owner (PSPO)</div>
+                <div className="text-slate-700 text-base">Professional Scrum Master (PSM I)</div> {/* CHANGED: Text color */}
+                <div className="text-slate-700 text-base">Professional Scrum Product Owner (PSPO)</div> {/* CHANGED: Text color */}
               </div>
             </div>
           </motion.div>
@@ -645,8 +623,8 @@ export default function PortfolioWebsite() {
       </section>
       {/* Certificates Section - Moved right after About Me */}
       <section id="certificates" className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative">
-        <FloatingOrb delay={0} size="w-48 h-48" color="gold" />
-        <FloatingOrb delay={3} size="w-40 h-40" color="purple" />
+        <FloatingOrb delay={0} size="w-48 h-48" color="gold" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={3} size="w-40 h-40" color="purple" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -654,10 +632,10 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-8"
         >
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-amber-500 bg-clip-text text-transparent flex items-center justify-center gap-2">
-            <Award className="w-7 h-7" /> Certifications
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-600 to-amber-700 bg-clip-text text-transparent flex items-center justify-center gap-2"> {/* CHANGED: Gradient colors to be darker */}
+            <Award className="w-7 h-7 text-amber-600" /> Certifications {/* CHANGED: Icon color */}
           </h3>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-yellow-500 to-amber-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-yellow-600 to-amber-600 mx-auto rounded-full"></div> {/* CHANGED: Gradient colors to be darker */}
         </motion.div>
         <div className="grid md:grid-cols-2 gap-6">
           {certificates.map((cert, i) => (
@@ -668,18 +646,18 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.03 }}
-              className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 p-5 rounded-xl border border-slate-600/30 hover:border-amber-500/50 transition-all duration-300 backdrop-blur-sm group"
+              className="bg-white p-5 rounded-xl border border-slate-200 shadow-lg hover:border-amber-400 transition-all duration-300 group" // CHANGED: Card style for light theme
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h4 className="text-xl font-bold text-amber-300 mb-1">{cert.title}</h4>
-                  <p className="text-slate-400 text-base">{cert.issuer} • {cert.date}</p>
+                  <h4 className="text-xl font-bold text-amber-700 mb-1">{cert.title}</h4> {/* CHANGED: Text color */}
+                  <p className="text-slate-600 text-base">{cert.issuer} • {cert.date}</p> {/* CHANGED: Text color */}
                 </div>
-                <div className="w-12 h-12 bg-gradient-to-br from-amber-500/20 to-yellow-500/20 rounded-lg flex items-center justify-center">
-                  <Award className="w-6 h-6 text-amber-400" />
+                <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center"> {/* CHANGED: Background color */}
+                  <Award className="w-6 h-6 text-amber-600" /> {/* CHANGED: Icon color */}
                 </div>
               </div>
-              <p className="text-slate-300 text-base leading-relaxed">{cert.description}</p>
+              <p className="text-slate-700 text-base leading-relaxed">{cert.description}</p> {/* CHANGED: Text color */}
             </motion.div>
           ))}
         </div>
@@ -687,10 +665,10 @@ export default function PortfolioWebsite() {
       {/* Skills Section */}
       <section
         id="skills"
-        className="max-w-6xl mx-auto px-4 py-12 md:py-16 bg-gradient-to-br from-slate-900/30 to-slate-800/30 rounded-2xl backdrop-blur-sm border border-slate-700/30 my-8 relative overflow-hidden"
+        className="max-w-6xl mx-auto px-4 py-12 md:py-16 bg-slate-50 rounded-2xl border border-slate-200 my-8 relative overflow-hidden" // CHANGED: Section background/border for light theme
       >
-        <FloatingOrb delay={0} size="w-64 h-64" color="pink" />
-        <FloatingOrb delay={3} size="w-56 h-56" color="green" />
+        <FloatingOrb delay={0} size="w-64 h-64" color="pink" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={3} size="w-56 h-56" color="green" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -698,10 +676,10 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-8"
         >
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
-            <Star className="w-7 h-7" /> Technical Skills & Expertise
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-pink-600 to-cyan-600 bg-clip-text text-transparent flex items-center justify-center gap-2"> {/* CHANGED: Gradient colors to be darker */}
+            <Star className="w-7 h-7 text-pink-600" /> Technical Skills & Expertise {/* CHANGED: Icon color */}
           </h3>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-pink-500 to-cyan-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-pink-600 to-cyan-600 mx-auto rounded-full"></div> {/* CHANGED: Gradient colors to be darker */}
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill, i) => (
@@ -712,26 +690,26 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.1, duration: 0.5, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.03 }}
-              className="group bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-4 sm:p-5 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm"
+              className="group bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-md hover:border-cyan-400 transition-all duration-300" // CHANGED: Card style for light theme
             >
               <div className="flex items-center gap-3 mb-3">
-                <div className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-cyan-500/20 to-amber-500/20 rounded-lg flex items-center justify-center group-hover:from-cyan-500/30 group-hover:to-amber-500/30 transition-colors">
+                <div className="w-12 sm:w-14 h-12 sm:h-14 bg-cyan-100 rounded-lg flex items-center justify-center group-hover:bg-cyan-200 transition-colors"> {/* CHANGED: Background color */}
                   <img
                     src={skill.logo}
                     alt={skill.name}
-                    className="w-8 sm:w-10 h-8 sm:h-10 object-contain filter group-hover:brightness-110 transition-all"
+                    className="w-8 sm:w-10 h-8 sm:h-10 object-contain filter group-hover:brightness-100 transition-all" // Removed filter for light theme
                   />
                 </div>
-                <h4 className="text-base sm:text-lg font-semibold text-white">{skill.name}</h4>
+                <h4 className="text-base sm:text-lg font-semibold text-slate-800">{skill.name}</h4> {/* CHANGED: Text color */}
               </div>
               <div className="mt-3">
-                <div className="flex justify-between text-xs sm:text-sm text-slate-400 mb-1">
+                <div className="flex justify-between text-xs sm:text-sm text-slate-600 mb-1"> {/* CHANGED: Text color */}
                   <span>Proficiency</span>
                   <span>{skill.level}%</span>
                 </div>
-                <div className="w-full bg-slate-700/50 rounded-full h-2 overflow-hidden">
+                <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden"> {/* CHANGED: Background color */}
                   <motion.div 
-                    className="bg-gradient-to-r from-cyan-500 to-amber-500 h-2 rounded-full"
+                    className="bg-gradient-to-r from-cyan-600 to-amber-600 h-2 rounded-full" // CHANGED: Gradient colors to be darker
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
                     viewport={{ once: true }}
@@ -755,19 +733,19 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -5, scale: 1.05 }}
-              className={`text-center p-3 sm:p-4 bg-gradient-to-br from-${item.color}-500/10 to-${item.color}-600/10 rounded-xl border border-${item.color}-500/20`}
+              className={`text-center p-3 sm:p-4 bg-${item.color}-50/50 rounded-xl border border-${item.color}-300 shadow-md`} // CHANGED: Card style for light theme
             >
-              <item.icon className={`w-8 sm:w-10 h-8 sm:h-10 text-${item.color}-400 mx-auto mb-2`} />
-              <h4 className="text-lg sm:text-xl font-bold text-white mb-1">{item.title}</h4>
-              <p className="text-slate-300 text-xs sm:text-sm">{item.desc}</p>
+              <item.icon className={`w-8 sm:w-10 h-8 sm:h-10 text-${item.color}-600 mx-auto mb-2`} /> {/* CHANGED: Icon color */}
+              <h4 className="text-lg sm:text-xl font-bold text-slate-800 mb-1">{item.title}</h4> {/* CHANGED: Text color */}
+              <p className="text-slate-600 text-xs sm:text-sm">{item.desc}</p> {/* CHANGED: Text color */}
             </motion.div>
           ))}
         </div>
       </section>
       {/* Experience Section */}
       <section id="experience" className="max-w-6xl mx-auto px-4 py-12 md:py-16 relative">
-        <FloatingOrb delay={0} size="w-48 h-48" color="indigo" />
-        <FloatingOrb delay={3} size="w-40 h-40" color="teal" />
+        <FloatingOrb delay={0} size="w-48 h-48" color="indigo" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={3} size="w-40 h-40" color="teal" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -775,13 +753,13 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-8"
         >
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
-            <Briefcase className="w-7 h-7" /> Professional Experience
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-cyan-600 bg-clip-text text-transparent flex items-center justify-center gap-2"> {/* CHANGED: Gradient colors to be darker */}
+            <Briefcase className="w-7 h-7 text-indigo-600" /> Professional Experience {/* CHANGED: Icon color */}
           </h3>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-indigo-500 to-cyan-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-indigo-600 to-cyan-600 mx-auto rounded-full"></div> {/* CHANGED: Gradient colors to be darker */}
         </motion.div>
         <div className="relative">
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500 to-amber-500 hidden md:block"></div>
+          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-600 to-amber-600 hidden md:block"></div> {/* CHANGED: Colors to be darker */}
           {experiences.map((exp, i) => (
             <motion.div
               key={i}
@@ -790,15 +768,15 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -3, boxShadow: "0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04)" }}
-              className={`mb-8 md:ml-12 p-5 md:p-6 bg-gradient-to-br from-slate-800/60 to-slate-700/60 rounded-xl border border-slate-600/30 backdrop-blur-sm relative group hover:shadow-xl transition-all duration-300 ${
+              className={`mb-8 md:ml-12 p-5 md:p-6 bg-white rounded-xl border border-slate-200 shadow-lg relative group hover:shadow-xl transition-all duration-300 ${
                 i === experiences.length - 1 ? 'mb-0' : ''
-              }`}
+              }`} 
             >
-              <div className="absolute -left-16 top-6 w-3 h-3 bg-gradient-to-r from-cyan-500 to-amber-500 rounded-full border-2 border-slate-800 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
+              <div className="absolute -left-16 top-6 w-3 h-3 bg-gradient-to-r from-cyan-600 to-amber-600 rounded-full border-2 border-white hidden md:block group-hover:scale-125 transition-transform duration-300"></div> {/* CHANGED: Colors for light theme */}
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
                 <div>
-                  <h4 className="text-xl font-bold text-amber-300 mb-1">{exp.role}</h4>
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-slate-400 text-xs sm:text-base">
+                  <h4 className="text-xl font-bold text-amber-700 mb-1">{exp.role}</h4> {/* CHANGED: Text color */}
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2 text-slate-600 text-xs sm:text-base"> {/* CHANGED: Text color */}
                     <p className="font-medium">{exp.company}</p>
                     <div className="hidden sm:block w-1 h-1 bg-slate-400 rounded-full"></div>
                     <p>{exp.period}</p>
@@ -814,7 +792,7 @@ export default function PortfolioWebsite() {
                     <motion.div
                       key={idx}
                       whileHover={{ scale: 1.05 }}
-                      className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium border border-green-500/30"
+                      className="bg-green-100 text-green-700 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium border border-green-300" // CHANGED: Badge style for light theme
                     >
                       {achievement.split(' ')[0]}
                     </motion.div>
@@ -823,8 +801,8 @@ export default function PortfolioWebsite() {
               </div>
               <div className="grid grid-cols-1 gap-4 sm:gap-6">
                 <div>
-                  <h5 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center gap-1">
-                    <Target className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+                  <h5 className="text-lg sm:text-xl font-semibold text-slate-800 mb-2 sm:mb-3 flex items-center gap-1"> {/* CHANGED: Text color */}
+                    <Target className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-600" /> {/* CHANGED: Icon color */}
                     Key Responsibilities
                   </h5>
                   <ul className="space-y-2">
@@ -836,10 +814,10 @@ export default function PortfolioWebsite() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.4 }}
                         whileHover={{ x: 0 }}
-                        className="flex gap-2 text-slate-300 text-xs sm:text-base leading-relaxed"
+                        className="flex gap-2 text-slate-700 text-xs sm:text-base leading-relaxed" // CHANGED: Text color
                       >
                         <motion.span 
-                          className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"
+                          className="w-1.5 h-1.5 bg-cyan-600 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" // CHANGED: Bullet color
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                         />
@@ -848,9 +826,9 @@ export default function PortfolioWebsite() {
                     ))}
                   </ul>
                 </div>
-                <div className="bg-slate-700/30 p-3 sm:p-4 rounded-lg border border-slate-600/30">
-                  <h5 className="text-lg sm:text-xl font-semibold text-white mb-2 sm:mb-3 flex items-center gap-1">
-                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
+                <div className="bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200"> {/* CHANGED: Background/border for light theme */}
+                  <h5 className="text-lg sm:text-xl font-semibold text-slate-800 mb-2 sm:mb-3 flex items-center gap-1"> {/* CHANGED: Text color */}
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" /> {/* CHANGED: Icon color */}
                     Key Achievements
                   </h5>
                   <ul className="space-y-2">
@@ -862,10 +840,10 @@ export default function PortfolioWebsite() {
                         viewport={{ once: true }}
                         transition={{ delay: i * 0.1, duration: 0.4 }}
                         whileHover={{ x: 0 }}
-                        className="flex gap-2 text-slate-300 text-xs sm:text-base leading-relaxed"
+                        className="flex gap-2 text-slate-700 text-xs sm:text-base leading-relaxed" // CHANGED: Text color
                       >
                         <motion.span 
-                          className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1.5 sm:mt-2 flex-shrink-0"
+                          className="w-1.5 h-1.5 bg-amber-600 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" // CHANGED: Bullet color
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
                         />
@@ -882,10 +860,10 @@ export default function PortfolioWebsite() {
       {/* Projects Section */}
       <section
         id="projects"
-        className="max-w-6xl mx-auto px-4 py-12 md:py-16 bg-gradient-to-br from-slate-900/30 to-slate-800/30 rounded-2xl backdrop-blur-sm border border-slate-700/30 my-8 relative overflow-hidden"
+        className="max-w-6xl mx-auto px-4 py-12 md:py-16 bg-slate-50 rounded-2xl border border-slate-200 my-8 relative overflow-hidden" // CHANGED: Section background/border for light theme
       >
-        <FloatingOrb delay={0} size="w-64 h-64" color="teal" />
-        <FloatingOrb delay={3} size="w-56 h-56" color="purple" />
+        <FloatingOrb delay={0} size="w-64 h-64" color="teal" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={3} size="w-56 h-56" color="purple" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -893,33 +871,33 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="text-center mb-8"
         >
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent flex items-center justify-center gap-2">
-            <FolderKanban className="w-7 h-7" /> Key Projects & Impact
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent flex items-center justify-center gap-2"> {/* CHANGED: Gradient colors to be darker */}
+            <FolderKanban className="w-7 h-7 text-green-600" /> Key Projects & Impact {/* CHANGED: Icon color */}
           </h3>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-green-500 to-teal-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-0.5 bg-gradient-to-r from-green-600 to-teal-600 mx-auto rounded-full"></div> {/* CHANGED: Gradient colors to be darker */}
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.div
             whileHover={{ y: -8, scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-4 sm:p-6 rounded-xl border border-slate-600/30 hover:border-cyan-500/50 transition-all duration-300 backdrop-blur-sm group"
+            className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-lg hover:border-cyan-400 transition-all duration-300 group" // CHANGED: Card style for light theme
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
-              <h4 className="text-lg sm:text-xl font-bold text-cyan-300">ServiceNow Platform Transformation</h4>
-              <div className="bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 text-cyan-300 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-cyan-500/30">
+              <h4 className="text-lg sm:text-xl font-bold text-cyan-700">ServiceNow Platform Transformation</h4> {/* CHANGED: Text color */}
+              <div className="bg-cyan-100 text-cyan-700 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-cyan-300"> {/* CHANGED: Badge style for light theme */}
                 ServiceNow
               </div>
             </div>
             <div className="space-y-3 mb-4">
-              <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
+              <p className="text-slate-700 text-xs sm:text-base leading-relaxed"> {/* CHANGED: Text color */}
                 Led Agile transformation for ServiceNow platform implementation across ITSM, ITOM, and other modules, ensuring alignment with enterprise priorities and platform governance.
               </p>
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center p-2 sm:p-3 bg-slate-700/30 rounded-lg">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center p-2 sm:p-3 bg-slate-100 rounded-lg border border-slate-200"> {/* CHANGED: Inner background/border for light theme */}
                 {[
-                  { value: "15%", label: "Release Success Rate ↑", color: "green-400" },
-                  { value: "18%", label: "Sprint Predictability ↑", color: "blue-400" },
-                  { value: "25%", label: "Sprint Disruptions ↓", color: "amber-400" },
-                  { value: "20%", label: "Sprint Velocity ↑", color: "purple-400" }
+                  { value: "15%", label: "Release Success Rate ↑", color: "green-700" }, // CHANGED: Text color
+                  { value: "18%", label: "Sprint Predictability ↑", color: "blue-700" }, // CHANGED: Text color
+                  { value: "25%", label: "Sprint Disruptions ↓", color: "amber-700" }, // CHANGED: Text color
+                  { value: "20%", label: "Sprint Velocity ↑", color: "purple-700" } // CHANGED: Text color
                 ].map((stat, i) => (
                   <motion.div
                     key={i}
@@ -931,14 +909,14 @@ export default function PortfolioWebsite() {
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                   >
                     <div className={`text-lg sm:text-xl font-bold text-${stat.color}`}>{stat.value}</div>
-                    <div className="text-[10px] sm:text-xs text-slate-400">{stat.label}</div>
+                    <div className="text-[10px] sm:text-xs text-slate-600">{stat.label}</div> {/* CHANGED: Text color */}
                   </motion.div>
                 ))}
               </div>
             </div>
-            <div className="pt-3 sm:pt-4 border-t border-slate-600/50">
-              <h5 className="font-semibold text-white mb-2 text-base sm:text-lg">Key Contributions:</h5>
-              <ul className="space-y-1 text-slate-300 text-[10px] sm:text-sm">
+            <div className="pt-3 sm:pt-4 border-t border-slate-300"> {/* CHANGED: Border color */}
+              <h5 className="font-semibold text-slate-800 mb-2 text-base sm:text-lg">Key Contributions:</h5> {/* CHANGED: Text color */}
+              <ul className="space-y-1 text-slate-700 text-[10px] sm:text-sm"> {/* CHANGED: Text color */}
                 {[
                   "Facilitated collaborative sessions with stakeholders to define product goals and refine roadmap",
                   "Coached developers, admins, and business stakeholders on Agile best practices",
@@ -953,7 +931,7 @@ export default function PortfolioWebsite() {
                     whileHover={{ x: 0 }}
                     className="flex items-start gap-1.5"
                   >
-                    <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1 flex-shrink-0 sm:mt-1.5"></span>
+                    <span className="w-1.5 h-1.5 bg-cyan-600 rounded-full mt-1 flex-shrink-0 sm:mt-1.5"></span> {/* CHANGED: Bullet color */}
                     {item}
                   </motion.li>
                 ))}
@@ -963,24 +941,24 @@ export default function PortfolioWebsite() {
           <motion.div
             whileHover={{ y: -8, scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-gradient-to-br from-slate-800/80 to-slate-700/80 p-4 sm:p-6 rounded-xl border border-slate-600/30 hover:border-amber-500/50 transition-all duration-300 backdrop-blur-sm group"
+            className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-lg hover:border-amber-400 transition-all duration-300 group" // CHANGED: Card style for light theme
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
-              <h4 className="text-lg sm:text-xl font-bold text-amber-300">Insurance Systems Optimization</h4>
-              <div className="bg-gradient-to-r from-amber-500/20 to-orange-600/20 text-amber-300 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-amber-500/30">
+              <h4 className="text-lg sm:text-xl font-bold text-amber-700">Insurance Systems Optimization</h4> {/* CHANGED: Text color */}
+              <div className="bg-amber-100 text-amber-700 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-amber-300"> {/* CHANGED: Badge style for light theme */}
                 New York Life
               </div>
             </div>
             <div className="space-y-3 mb-4">
-              <p className="text-slate-300 text-xs sm:text-base leading-relaxed">
+              <p className="text-slate-700 text-xs sm:text-base leading-relaxed"> {/* CHANGED: Text color */}
                 Drove Agile adoption across insurance and financial services teams, improving workflow efficiency while ensuring compliance with regulatory and security requirements.
               </p>
-              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center p-2 sm:p-3 bg-slate-700/30 rounded-lg">
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 text-center p-2 sm:p-3 bg-slate-100 rounded-lg border border-slate-200"> {/* CHANGED: Inner background/border for light theme */}
                 {[
-                  { value: "95%", label: "On-time Delivery", color: "green-400" },
-                  { value: "30%", label: "Story Rework ↓", color: "blue-400" },
-                  { value: "25%", label: "Agile Adoption ↑", color: "amber-400" },
-                  { value: "22%", label: "Operational Efficiency ↑", color: "purple-400" }
+                  { value: "95%", label: "On-time Delivery", color: "green-700" }, // CHANGED: Text color
+                  { value: "30%", label: "Story Rework ↓", color: "blue-700" }, // CHANGED: Text color
+                  { value: "25%", label: "Agile Adoption ↑", color: "amber-700" }, // CHANGED: Text color
+                  { value: "22%", label: "Operational Efficiency ↑", color: "purple-700" } // CHANGED: Text color
                 ].map((stat, i) => (
                   <motion.div
                     key={i}
@@ -992,14 +970,14 @@ export default function PortfolioWebsite() {
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                   >
                     <div className={`text-lg sm:text-xl font-bold text-${stat.color}`}>{stat.value}</div>
-                    <div className="text-[10px] sm:text-xs text-slate-400">{stat.label}</div>
+                    <div className="text-[10px] sm:text-xs text-slate-600">{stat.label}</div> {/* CHANGED: Text color */}
                   </motion.div>
                 ))}
               </div>
             </div>
-            <div className="pt-3 sm:pt-4 border-t border-slate-600/50">
-              <h5 className="font-semibold text-white mb-2 text-base sm:text-lg">Key Contributions:</h5>
-              <ul className="space-y-1 text-slate-300 text-[10px] sm:text-sm">
+            <div className="pt-3 sm:pt-4 border-t border-slate-300"> {/* CHANGED: Border color */}
+              <h5 className="font-semibold text-slate-800 mb-2 text-base sm:text-lg">Key Contributions:</h5> {/* CHANGED: Text color */}
+              <ul className="space-y-1 text-slate-700 text-[10px] sm:text-sm"> {/* CHANGED: Text color */}
                 {[
                   "Supported teams in achieving 95% on-time delivery against sprint commitments",
                   "Reduced critical task delays by 15% through effective blocker removal",
@@ -1014,7 +992,7 @@ export default function PortfolioWebsite() {
                     whileHover={{ x: 0 }}
                     className="flex items-start gap-1.5"
                   >
-                    <span className="w-1.5 h-1.5 bg-amber-400 rounded-full mt-1 flex-shrink-0 sm:mt-1.5"></span>
+                    <span className="w-1.5 h-1.5 bg-amber-600 rounded-full mt-1 flex-shrink-0 sm:mt-1.5"></span> {/* CHANGED: Bullet color */}
                     {item}
                   </motion.li>
                 ))}
@@ -1024,29 +1002,29 @@ export default function PortfolioWebsite() {
         </div>
         <div className="mt-6 sm:mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
           {[
-            { value: "30%", label: "Average Efficiency Improvement", color: "cyan-400" },
-            { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-400" },
-            { value: "95%", label: "On-time Delivery Rate", color: "green-400" }
+            { value: "30%", label: "Average Efficiency Improvement", color: "cyan-600" }, // CHANGED: Text color
+            { value: "40%", label: "Stakeholder Engagement Increase", color: "amber-600" }, // CHANGED: Text color
+            { value: "95%", label: "On-time Delivery Rate", color: "green-600" } // CHANGED: Text color
           ].map((stat, i) => (
             <motion.div
               key={i}
               whileHover={{ scale: 1.05, y: -3 }}
-              className="text-center p-3 sm:p-4 bg-gradient-to-br from-slate-800/60 to-slate-700/60 rounded-xl border border-slate-600/30"
+              className="text-center p-3 sm:p-4 bg-white rounded-xl border border-slate-200 shadow-md" // CHANGED: Card style for light theme
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
             >
               <div className={`text-xl sm:text-2xl font-bold text-${stat.color} mb-1`}>{stat.value}</div>
-              <div className="text-slate-300 text-xs sm:text-sm">{stat.label}</div>
+              <div className="text-slate-700 text-xs sm:text-sm">{stat.label}</div> {/* CHANGED: Text color */}
             </motion.div>
           ))}
         </div>
       </section>
       {/* Contact Section */}
       <section id="contact" className="max-w-6xl mx-auto px-4 py-12 md:py-16 text-center relative">
-        <FloatingOrb delay={0} size="w-48 h-48" color="cyan" />
-        <FloatingOrb delay={3} size="w-40 h-40" color="amber" />
+        <FloatingOrb delay={0} size="w-48 h-48" color="cyan" /> {/* REMOVED (returns null) */}
+        <FloatingOrb delay={3} size="w-40 h-40" color="amber" /> {/* REMOVED (returns null) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -1054,11 +1032,11 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="mb-8"
         >
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-400 to-cyan-400 bg-clip-text text-transparent">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent"> {/* CHANGED: Gradient colors to be darker */}
             Contact Information
           </h3>
-          <div className="w-20 h-0.5 bg-gradient-to-r from-teal-500 to-cyan-500 mx-auto rounded-full mb-4"></div>
-          <p className="text-slate-300 max-w-xl mx-auto text-base md:text-lg">
+          <div className="w-20 h-0.5 bg-gradient-to-r from-teal-600 to-cyan-600 mx-auto rounded-full mb-4"></div> {/* CHANGED: Gradient colors to be darker */}
+          <p className="text-slate-600 max-w-xl mx-auto text-base md:text-lg"> {/* CHANGED: Text color */}
             I'm always interested in new opportunities and challenges. Let's discuss how I can help your team achieve Agile excellence.
           </p>
         </motion.div>
@@ -1072,39 +1050,39 @@ export default function PortfolioWebsite() {
               key={i}
               whileHover={{ y: -8, scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-gradient-to-br from-slate-800/60 to-slate-700/60 p-4 sm:p-5 rounded-xl border border-slate-600/30 backdrop-blur-sm group"
+              className="bg-white p-4 sm:p-5 rounded-xl border border-slate-200 shadow-lg group" // CHANGED: Card style for light theme
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.5 }}
             >
-              <div className="w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-lg flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:from-cyan-500/30 group-hover:to-cyan-600/30 transition-colors">
-                <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-cyan-400" />
+              <div className="w-12 sm:w-14 h-12 sm:h-14 bg-cyan-100 rounded-lg flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-cyan-200 transition-colors"> {/* CHANGED: Background color */}
+                <item.icon className="w-6 h-6 sm:w-7 sm:h-7 text-cyan-600" /> {/* CHANGED: Icon color */}
               </div>
-              <h4 className="text-lg sm:text-xl font-bold text-white mb-2">{item.title}</h4>
-              <p className="text-slate-300 text-sm sm:text-base break-all">{item.value}</p>
-              <p className="text-slate-400 text-xs sm:text-sm mt-2">{item.desc}</p>
+              <h4 className="text-lg sm:text-xl font-bold text-slate-800 mb-2">{item.title}</h4> {/* CHANGED: Text color */}
+              <p className="text-slate-700 text-sm sm:text-base break-all">{item.value}</p> {/* CHANGED: Text color */}
+              <p className="text-slate-600 text-xs sm:text-sm mt-2">{item.desc}</p> {/* CHANGED: Text color */}
             </motion.div>
           ))}
         </div>
       </section>
       {/* Footer */}
-      <footer className="bg-slate-950/90 backdrop-blur-md text-slate-400 py-8 text-center relative border-t border-slate-700/30">
+      <footer className="bg-slate-50 border-t border-slate-200 text-slate-600 py-8 text-center relative"> {/* CHANGED: Footer style for light theme */}
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-4">
-            <h4 className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent mb-2">
+            <h4 className="text-xl font-bold bg-gradient-to-r from-cyan-600 to-amber-600 bg-clip-text text-transparent mb-2"> {/* CHANGED: Gradient colors to be darker */}
               Ichha (Ishaa)Sharma
             </h4>
-            <p className="text-slate-400 text-base">
+            <p className="text-slate-600 text-base"> {/* CHANGED: Text color */}
               Certified Scrum Master & Product Owner | Agile Transformation Specialist
             </p>
           </div>
           <div className="flex flex-col md:flex-row justify-between items-center gap-2 sm:gap-4 text-xs sm:text-sm">
             <p>© {new Date().getFullYear()} Ichha Sharma. All rights reserved.</p>
             {/* <div className="flex flex-wrap justify-center gap-x-3 gap-y-1">
-              <span className="text-pink-400">Built with React</span>
-              <span className="text-cyan-400">+ Tailwind CSS</span>
-              <span className="text-amber-400">+ Framer Motion</span>
+              <span className="text-pink-600">Built with React</span> // CHANGED: Text color
+              <span className="text-cyan-600">+ Tailwind CSS</span> // CHANGED: Text color
+              <span className="text-amber-600">+ Framer Motion</span> // CHANGED: Text color
             </div> */}
           </div>
         </div>
@@ -1115,7 +1093,7 @@ export default function PortfolioWebsite() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           whileHover={{ scale: 1.1, rotate: 360 }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-6 right-6 p-3 bg-gradient-to-r from-cyan-500 to-amber-500 hover:from-cyan-400 hover:to-amber-400 text-white rounded-full shadow-md z-50 transition-all duration-300"
+          className="fixed bottom-6 right-6 p-3 bg-gradient-to-r from-cyan-600 to-amber-600 hover:from-cyan-500 hover:to-amber-500 text-white rounded-full shadow-lg z-50 transition-all duration-300" // CHANGED: Button colors/shadow
         >
           <ArrowUp className="w-5 h-5" />
         </motion.button>
