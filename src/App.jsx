@@ -45,15 +45,15 @@ export default function PortfolioWebsite() {
     contact: useRef(null),
   };
   const Logo = () => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
-      <circle cx="50" cy="50" r="45" fill="#3B82F6" />
-      <circle cx="35" cy="40" r="10" fill="#F97316" />
-      <circle cx="65" cy="40" r="10" fill="#F97316" />
-      <path d="M35 60 Q50 70, 65 60" stroke="#F97316" stroke-width="4" fill="none" />
-    </svg>
-  );
-};
+    return (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+        <circle cx="50" cy="50" r="45" fill="#3B82F6" />
+        <circle cx="35" cy="40" r="10" fill="#F97316" />
+        <circle cx="65" cy="40" r="10" fill="#F97316" />
+        <path d="M35 60 Q50 70, 65 60" stroke="#F97316" stroke-width="4" fill="none" />
+      </svg>
+    );
+  };
   useEffect(() => {
     const handleScroll = () => {
       setShowScroll(window.scrollY > 300);
@@ -161,7 +161,7 @@ export default function PortfolioWebsite() {
       date: "2022",
       description: "Certified in maximizing product value through effective Product Backlog management and stakeholder collaboration."
     },
-   
+
   ];
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -190,7 +190,7 @@ export default function PortfolioWebsite() {
   };
   // Enhanced floating animation for decorative elements (REMOVED FOR LIGHT THEME)
   const FloatingOrb = ({ delay = 0, size = "w-64 h-64", color = "cyan" }) => {
-    return null; 
+    return null;
   };
   // Resume content from your PDF (formatted for display)
   const resumeContent = {
@@ -313,7 +313,7 @@ export default function PortfolioWebsite() {
     ]
   };
   return (
-    <motion.div 
+    <motion.div
       className="scroll-smooth bg-white text-slate-900 font-sans" // Main background/text colors
       initial={{ opacity: 0, y: 30 }}
       animate={controls}
@@ -322,10 +322,11 @@ export default function PortfolioWebsite() {
       <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
         <nav className="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
           <motion.h1
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, type: "spring", stiffness: 100 }}
-            className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent" // CHANGED: Blue Gradient
+            // MODIFIED: Changed gradient to solid blue text-blue-700
+            className="text-xl md:text-2xl lg:text-3xl font-bold text-blue-600"
           >
             Ichha (Isha)Sharma
           </motion.h1>
@@ -336,11 +337,10 @@ export default function PortfolioWebsite() {
                 key={i}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-md transition-all duration-300 ${
-                  activeSection === item.toLowerCase() 
-                    ? 'bg-blue-100 text-blue-700 border border-blue-300' // CHANGED: Active link style for blue theme
-                    : 'hover:bg-slate-100 hover:text-blue-600 text-slate-600' // CHANGED: Inactive link style
-                }`}
+                className={`px-4 py-2 rounded-md transition-all duration-300 ${activeSection === item.toLowerCase()
+                  ? 'bg-blue-100 text-blue-700 border border-blue-300' // CHANGED: Active link style for blue theme
+                  : 'hover:bg-slate-100 hover:text-blue-600 text-slate-600' // CHANGED: Inactive link style
+                  }`}
               >
                 <a
                   href={`#${item.toLowerCase()}`}
@@ -356,7 +356,7 @@ export default function PortfolioWebsite() {
             ))}
           </ul>
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors text-slate-700"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -402,47 +402,47 @@ export default function PortfolioWebsite() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center z-10 max-w-3xl mx-auto relative"
         >
- <motion.div
-  initial={{ opacity: 0, scale: 0.8 }}
-  animate={{ opacity: 1, scale: 1 }}
-  transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
-  className="w-52 sm:w-60 md:w-72 lg:w-80 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center shadow-lg border-4 border-white overflow-hidden -mt-6 aspect-square relative" // CHANGED: Profile border gradient to blue
->
-  <img
-    src={Avatar}
-    alt="Ichha Sharma"
-    className="w-full h-full object-cover object-center rounded-full"
-    style={{
-      objectPosition: 'center',
-      objectFit: 'cover',
-    }}
-  />
-</motion.div>
-{/* Added: Text under the profile picture */}
-<motion.div
-  initial={{ opacity: 0, y: 10 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.3, duration: 0.5 }}
-  className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-6 sm:mb-8"
->
-  Isha Sharma
-</motion.div>
-    {/* Contact info under profile */}
-    <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-600 text-xs sm:text-sm">
-      <div className="flex items-center gap-1">
-        <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600" /> {/* CHANGED: Icon color to blue */}
-        +1 925-922-7772
-      </div>
-      <div className="flex items-center gap-1">
-        <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-600" /> {/* CHANGED: Icon color to cyan */}
-        4ishasharma@gmail.com
-      </div>
-      <div className="flex items-center gap-1">
-        <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600" /> {/* CHANGED: Icon color to blue */}
-        United States 
-      </div>
-    </div>
-          <motion.h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-700 via-cyan-600 to-blue-500 bg-clip-text text-transparent leading-tight" // CHANGED: Blue Gradient Heading
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, type: "spring", stiffness: 100 }}
+            className="w-52 sm:w-60 md:w-72 lg:w-80 h-auto mx-auto mb-4 sm:mb-6 rounded-full bg-gradient-to-br from-blue-400/20 to-cyan-400/20 flex items-center justify-center shadow-lg border-4 border-white overflow-hidden -mt-6 aspect-square relative" // CHANGED: Profile border gradient to blue
+          >
+            <img
+              src={Avatar}
+              alt="Ichha Sharma"
+              className="w-full h-full object-cover object-center rounded-full"
+              style={{
+                objectPosition: 'center',
+                objectFit: 'cover',
+              }}
+            />
+          </motion.div>
+          {/* Added: Text under the profile picture */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 mb-6 sm:mb-8"
+          >
+            Isha Sharma
+          </motion.div>
+          {/* Contact info under profile */}
+          <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 text-slate-600 text-xs sm:text-sm">
+            <div className="flex items-center gap-1">
+              <Phone className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600" /> {/* CHANGED: Icon color to blue */}
+              +1 925-922-7772
+            </div>
+            <div className="flex items-center gap-1">
+              <Mail className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-600" /> {/* CHANGED: Icon color to cyan */}
+              4ishasharma@gmail.com
+            </div>
+            <div className="flex items-center gap-1">
+              <MapPin className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-600" /> {/* CHANGED: Icon color to blue */}
+              United States
+            </div>
+          </div>
+          <motion.h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-blue-600 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
@@ -599,7 +599,7 @@ export default function PortfolioWebsite() {
                   whileHover={{ x: 0, scale: 1.02 }}
                   className="flex items-center gap-1.5 sm:gap-2 p-2 bg-white rounded-lg hover:bg-slate-50 transition-colors border border-slate-200"
                 >
-                  <motion.div 
+                  <motion.div
                     className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" // CHANGED: Icon color to blue
                     animate={{ scale: [1, 1.3, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
@@ -708,7 +708,7 @@ export default function PortfolioWebsite() {
                   <span>{skill.level}%</span>
                 </div>
                 <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-                  <motion.div 
+                  <motion.div
                     className="bg-gradient-to-r from-blue-600 to-cyan-600 h-2 rounded-full" // CHANGED: Blue Gradient Progress Bar
                     initial={{ width: 0 }}
                     whileInView={{ width: `${skill.level}%` }}
@@ -768,9 +768,8 @@ export default function PortfolioWebsite() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
               whileHover={{ y: -3, boxShadow: "0 15px 20px -5px rgba(0, 0, 0, 0.1), 0 8px 8px -5px rgba(0, 0, 0, 0.04)" }}
-              className={`mb-8 md:ml-12 p-5 md:p-6 bg-white rounded-xl border border-slate-200 shadow-lg relative group hover:shadow-xl transition-all duration-300 ${
-                i === experiences.length - 1 ? 'mb-0' : ''
-              }`} 
+              className={`mb-8 md:ml-12 p-5 md:p-6 bg-white rounded-xl border border-slate-200 shadow-lg relative group hover:shadow-xl transition-all duration-300 ${i === experiences.length - 1 ? 'mb-0' : ''
+                }`}
             >
               <div className="absolute -left-16 top-6 w-3 h-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full border-2 border-white hidden md:block group-hover:scale-125 transition-transform duration-300"></div> {/* CHANGED: Blue Gradient Timeline Dot */}
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
@@ -816,7 +815,7 @@ export default function PortfolioWebsite() {
                         whileHover={{ x: 0 }}
                         className="flex gap-2 text-slate-700 text-xs sm:text-base leading-relaxed"
                       >
-                        <motion.span 
+                        <motion.span
                           className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" // CHANGED: Bullet color to blue
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
@@ -826,7 +825,7 @@ export default function PortfolioWebsite() {
                     ))}
                   </ul>
                 </div>
-<div className="bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200">
+                <div className="bg-slate-50 p-3 sm:p-4 rounded-lg border border-slate-200">
                   <h5 className="text-lg sm:text-xl font-semibold text-slate-800 mb-2 sm:mb-3 flex items-center gap-1">
                     <Star className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-600" /> {/* CHANGED: Icon color to cyan */}
                     Key Achievements
@@ -842,7 +841,7 @@ export default function PortfolioWebsite() {
                         whileHover={{ x: 0 }}
                         className="flex gap-2 text-slate-700 text-xs sm:text-base leading-relaxed"
                       >
-                        <motion.span 
+                        <motion.span
                           className="w-1.5 h-1.5 bg-cyan-600 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" // CHANGED: Bullet color to cyan
                           animate={{ scale: [1, 1.3, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: i * 0.1 }}
@@ -941,11 +940,11 @@ export default function PortfolioWebsite() {
           <motion.div
             whileHover={{ y: -8, scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-lg hover:border-cyan-400 transition-all duration-300 group" // CHANGED: Card hover border to cyan
+            className="bg-white p-4 sm:p-6 rounded-xl border border-slate-200 shadow-lg hover:border-blue-400 transition-all duration-300 group" // CHANGED: Card hover border to cyan
           >
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0 mb-3 sm:mb-4">
-              <h4 className="text-lg sm:text-xl font-bold text-cyan-700">Insurance Systems Optimization</h4> {/* CHANGED: Text color to cyan */}
-              <div className="bg-cyan-100 text-cyan-700 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-cyan-300"> {/* CHANGED: Badge style to cyan */}
+              <h4 className="text-lg sm:text-xl font-bold text-blue-700">Insurance Systems Optimization</h4> {/* CHANGED: Text color to cyan */}
+              <div className="bg-blue-100 text-blue-700 px-2 py-1 rounded-full text-xs sm:text-sm font-medium border border-blue-300"> {/* CHANGED: Badge style to cyan */}
                 New York Life
               </div>
             </div>
