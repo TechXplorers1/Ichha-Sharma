@@ -442,13 +442,14 @@ export default function PortfolioWebsite() {
               United States
             </div>
           </div>
-          <motion.h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-blue-600 leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-          >
-            Certified Scrum Master & Product Owner
-          </motion.h2>
+          <motion.h2
+  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent leading-tight"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+>
+  Certified Scrum Master & Product Owner
+</motion.h2>
           <motion.p
             className="text-base sm:text-lg md:text-xl text-slate-600 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0 max-w-2xl mx-auto"
             initial={{ opacity: 0 }}
@@ -1070,7 +1071,7 @@ export default function PortfolioWebsite() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-4">
             <h4 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2"> {/* CHANGED: Blue Gradient Footer Title */}
-              Ichha (Ishaa)Sharma
+              Ichha(Ishaa)Sharma
             </h4>
             <p className="text-slate-600 text-base">
               Certified Scrum Master & Product Owner | Agile Transformation Specialist
