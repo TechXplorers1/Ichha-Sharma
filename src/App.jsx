@@ -26,7 +26,7 @@ import jiraLogo from "./assets/Jira.jpg";
 import servicenowLogo from "./assets/Servicenow.jpg";
 import sqlLogo from "./assets/SQL.jpg";
 import agileLogo from "./assets/Agile.jpg";
-import resumePDF from "./assets/resume.pdf";
+import resumePDF from "./assets/Updated-ICHHA SHARMA.pdf";
 import Avatar from "./assets/Isha-sharma-img.JPG";
 export default function PortfolioWebsite() {
   const [showScroll, setShowScroll] = useState(false);
